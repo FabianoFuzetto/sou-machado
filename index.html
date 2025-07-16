@@ -7,76 +7,208 @@
     <title>Vite + TS</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #e8f0ee 0%, #f7fafc 100%);
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 48px;
+    }
+    .main-wrapper {
+      width: 100%;
+      max-width: 600px;
+      margin: 48px auto 0 auto;
+      padding: 0 24px;
     }
     .container {
       background: #fff;
-      padding: 2rem;
-      margin-top: 3rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      max-width: 400px;
-      width: 100%;
+      padding: 2.5rem 2.5rem 2rem 2.5rem;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(44,62,80,0.13);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .logo-bg {
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 180px;
+      height: 180px;
+      box-shadow: 0 2px 12px rgba(44,62,80,0.10);
+      margin-bottom: 1.5rem;
+      margin-top: -2rem;
+    }
+    .logo {
+      width: 160px;
+      height: 160px;
+      object-fit: cover;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      border-radius: 50%;
+      background: #fff;
     }
     h1 {
-      color: #2c3e50;
+      color: #234c2e;
       text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
       margin-bottom: 1.5rem;
     }
+    .subtitle {
+      color: #4a6c5a;
+      text-align: center;
+      font-size: 1.15rem;
+      margin-bottom: 2.2rem;
+      font-weight: 500;
+    }
     label {
-      font-weight: bold;
+      font-weight: 600;
+      color: #234c2e;
+      margin-bottom: 0.5rem;
+      font-size: 1.08rem;
+      align-self: flex-start;
     }
     input[type="text"] {
       width: 100%;
-      padding: 0.5rem;
-      margin: 0.5rem 0 1rem 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      padding: 0.9rem;
+      margin: 0.5rem 0 1.5rem 0;
+      border: 1.5px solid #b2c2b9;
+      border-radius: 10px;
+      font-size: 1.15rem;
+      background: #f7fafc;
+      transition: border 0.2s;
+      box-sizing: border-box;
     }
-    button {
-      background: #2980b9;
-      color: #fff;
-      border: none;
-      padding: 0.7rem 1.5rem;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background 0.2s;
-    }
-    button:hover {
-      background: #3498db;
+    input[type="text"]:focus {
+      border-color: #234c2e;
+      outline: none;
     }
     .result {
       margin-top: 1.5rem;
-      padding: 1rem;
-      background: #eaf6fb;
-      border-radius: 5px;
-      color: #2c3e50;
+      padding: 1.2rem 1rem;
+      background: #e8f0ee;
+      border-radius: 12px;
+      color: #234c2e;
+      width: 100%;
+      font-size: 1.13rem;
+      box-shadow: 0 2px 12px rgba(44,62,80,0.07);
     }
-    @media (max-width: 500px) {
+    .result hr {
+      border: none;
+      border-top: 1px solid #b2c2b9;
+      margin: 1rem 0;
+    }
+    .copy-btn {
+      margin-left: 10px;
+      padding: 4px 14px;
+      font-size: 1em;
+      background: #234c2e;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .copy-btn:hover {
+      background: #2e6a3c;
+    }
+    @media (max-width: 700px) {
+      .main-wrapper {
+        max-width: 98vw;
+        padding: 0 6px;
+      }
       .container {
-        padding: 1rem;
-        margin-top: 1rem;
+        padding: 1.2rem 0.5rem 1rem 0.5rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      .logo-bg {
+        width: 70px;
+        height: 70px;
+      }
+      .logo {
+        width: 55px;
+        height: 55px;
       }
     }
   </style>
   </head>
   <body>
-  <div class="container">
-    <h1>Sou Machado</h1>
-    <label for="rua">Digite o nome da sua rua:</label>
-  <input type="text" id="rua" placeholder="Ex: Avenida Paulista" oninput="buscarCEP()">
-    <div id="resultado" class="result" style="display:none;"></div>
-  </div>
+    <div class="main-wrapper">
+      <div class="container">
+        <div class="logo-bg">
+          <img src="Gemini_Generated_Image_j9oll4j9oll4j9ol.png" alt="Logo Sou Machado" class="logo">
+        </div>
+        <div class="subtitle">Encontre o CEP do seu endereço em Álvares Machado</div>
+        <label for="rua" style="font-weight:600;color:#234c2e;margin-bottom:0.5rem;font-size:1.08rem;align-self:flex-start;display:flex;align-items:center;gap:0.5em;">
+          <span style="font-size:1.2em;vertical-align:middle;">🛣️</span> Digite o nome da sua rua:
+        </label>
+        <input type="text" id="rua" placeholder="Exemplo: Av. das Américas" oninput="buscarCEP()" style="font-style: italic; color: #6b8c7b; background: #f7fafc;">
+        <div id="resultado" class="result" style="display:none;"></div>
+        <div class="phones-section" style="width:100%;margin-top:2.2rem;">
+          <h2 class="phones-title">
+            <span class="phone-icon">📞</span> Telefones Úteis
+          </h2>
+          <label for="telefone-search" style="font-weight:600;color:#234c2e;margin-bottom:0.5rem;font-size:1.08rem;align-self:flex-start;">Digite o nome do local ou serviço:</label>
+          <input type="text" id="telefone-search" placeholder="Exemplo: Prefeitura Municipal" oninput="buscarTelefone()" style="width:100%;padding:0.9rem;margin:0.5rem 0 1.5rem 0;border:1.5px solid #b2c2b9;border-radius:10px;font-size:1.15rem;background:#f7fafc;font-style:italic;color:#6b8c7b;box-sizing:border-box;">
+          <div id="resultado-telefone" class="result" style="display:none;"></div>
+        </div>
+    </div>
   <script>
+    const telefonesUteis = [
+  {nome: 'Escola Franco Montoro', numero: '(18) 3273-1532', tel: '01832731532'},
+  {nome: 'Escola Márcia Helena Fernandez de Araújo', numero: '(18) 3273-1718', tel: '01832731718'},
+  {nome: 'Escola Mercedes Sanches Yamafuko', numero: '(18) 3273-5471', tel: '01832735471'},
+  {nome: 'Escola Maria Luiza Messias Ribeiro', numero: '(18) 3273-0760', tel: '01832730760'},
+  {nome: 'Escola Marechal do Ar Márcio de Souza', numero: '(18) 3273-1922', tel: '01832731922'},
+  {nome: 'Creche Recanto do Amanhecer', numero: '(18) 3273-4900', tel: '01832734900'},
+  {nome: 'ESF Parque dos Pinheiros', numero: '(18) 3273-1835', tel: '01832731835'},
+  {nome: 'ACIAAM', numero: '(18) 3273-1523', tel: '01832731523'},
+  {nome: 'Câmara Municipal', numero: '(18) 3273-1331', tel: '01832731331'},
+  {nome: 'Delegacia de Polícia', numero: '(18) 3273-1311', tel: '01832731311'},
+  {nome: 'Posto de Saúde Central', numero: '(18) 3273-1133', tel: '01832731133'},
+  {nome: 'Prefeitura Municipal', numero: '(18) 3273-9300', tel: '01832739300'},
+  {nome: 'Santa Casa', numero: '(18) 3273-1916', tel: '01832731916'},
+  {nome: 'Sabesp', numero: '(18) 3273-1442', tel: '01832731442'},
+  {nome: 'Corpo de Bombeiros', numero: '(18) 193', tel: '018193'},
+  {nome: 'Delegacias de Atendimento à Mulher', numero: '(18) 180', tel: '018180'},
+  {nome: 'Polícia Militar', numero: '(18) 190', tel: '018190'},
+  {nome: 'Disque-Denúncia', numero: '(18) 181', tel: '018181'},
+  {nome: 'Pronto-Socorro', numero: '(18) 192', tel: '018192'}
+    ];
+
+    function buscarTelefone() {
+      const termo = document.getElementById('telefone-search').value.trim().toLowerCase();
+      const resultado = document.getElementById('resultado-telefone');
+      resultado.innerHTML = '';
+      if (!termo) {
+        resultado.style.display = 'none';
+        return;
+      }
+      resultado.style.display = 'block';
+      const encontrados = telefonesUteis.filter(t => t.nome.toLowerCase().includes(termo));
+      if (encontrados.length > 0) {
+        let lista = encontrados.map(t => `
+          <div style="margin-bottom:1.1em;display:flex;align-items:center;background:#e8f0ee;border-radius:8px;padding:0.7rem 1rem;box-shadow:0 1px 4px rgba(44,62,80,0.04);">
+            <span class="phone-label" style="min-width:140px;">${t.nome}:</span>
+            <a href="tel:${t.tel}" style="color:#234c2e;text-decoration:none;font-weight:600;margin-left:0.5em;transition:color 0.2s;">${t.numero}</a>
+          </div>
+        `).join('');
+        resultado.innerHTML = lista;
+      } else {
+        resultado.innerHTML = 'Nenhum telefone encontrado.';
+      }
+    }
     const panoramaRuas = [
+      // Jardim Panorama
       {logradouro: 'Avenida Castro Alves', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-758'},
       {logradouro: 'Avenida José de Alencar', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-746'},
       {logradouro: 'Rua Álvares de Azevedo', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-772'},
@@ -93,7 +225,63 @@
       {logradouro: 'Rua Silvio Romero', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-750'},
       {logradouro: 'Rua Souza Caldas', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-744'},
       {logradouro: 'Rua Visconde Taunay', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-748'},
-      {logradouro: 'Travessa Antonio Alves Macedo', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-760'}
+      {logradouro: 'Travessa Antonio Alves Macedo', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-760'},
+      // Parque dos Pinheiros
+      {logradouro: 'Avenida Castro Alves', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-680'},
+      {logradouro: 'Avenida Fagundes Varela', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-660'},
+      {logradouro: 'Avenida Vinícius de Moraes', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-672'},
+      {logradouro: 'Rua Clóvis Bevilacqua', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-690'},
+      {logradouro: 'Rua Divino Campi', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-670'},
+      {logradouro: 'Rua Evaristo da Veiga', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-674'},
+      {logradouro: 'Rua Gonçalves Dias', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-676'},
+      {logradouro: 'Rua Gregório de Matos', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-678'},
+      {logradouro: 'Rua João Francisco Lisboa', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-682'},
+      {logradouro: 'Rua Joaquim Nabuco', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-680'},
+      {logradouro: 'Rua José do Patrocínio', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-664'},
+      {logradouro: 'Rua José Veríssimo', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-662'},
+      {logradouro: 'Rua Machado de Assis', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-666'},
+      {logradouro: 'Rua Martins Pena', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-668'},
+      {logradouro: 'Rua Raul Pompeia', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-686'},
+      {logradouro: 'Rua Tobias Barreto', bairro: 'Parque dos Pinheiros', localidade: 'Álvares Machado/SP', cep: '19165-684'},
+      // Parque dos Pinheiros II
+      {logradouro: 'Rua Bernardo Guimarães', bairro: 'Parque dos Pinheiros II', localidade: 'Álvares Machado/SP', cep: '19165-648'},
+      {logradouro: 'Rua Clóvis Bevilacqua', bairro: 'Parque dos Pinheiros II', localidade: 'Álvares Machado/SP', cep: '19165-630'},
+      {logradouro: 'Rua Divino Campi', bairro: 'Parque dos Pinheiros II', localidade: 'Álvares Machado/SP', cep: '19165-650'},
+      {logradouro: 'Rua Eduardo Prado', bairro: 'Parque dos Pinheiros II', localidade: 'Álvares Machado/SP', cep: '19165-638'},
+      {logradouro: 'Rua Joaquim Serra', bairro: 'Parque dos Pinheiros II', localidade: 'Álvares Machado/SP', cep: '19165-632'},
+      {logradouro: 'Rua Junqueira Freire', bairro: 'Parque dos Pinheiros II', localidade: 'Álvares Machado/SP', cep: '19165-634'},
+      {logradouro: 'Rua Otavio Domingos', bairro: 'Parque dos Pinheiros II', localidade: 'Álvares Machado/SP', cep: '19165-646'},
+      {logradouro: 'Rua Pedro Rabelo', bairro: 'Parque dos Pinheiros II', localidade: 'Álvares Machado/SP', cep: '19165-636'},
+      {logradouro: 'Rua Silva Ramos', bairro: 'Parque dos Pinheiros II', localidade: 'Álvares Machado/SP', cep: '19165-640'},
+      {logradouro: 'Rua Teixeira de Melo', bairro: 'Parque dos Pinheiros II', localidade: 'Álvares Machado/SP', cep: '19165-642'},
+      {logradouro: 'Rua Teófilo Dias', bairro: 'Parque dos Pinheiros II', localidade: 'Álvares Machado/SP', cep: '19165-644'},
+      // Conjunto Habitacional Maria da Penha
+      {logradouro: 'Avenida Maria José da Silva Dutra', bairro: 'Conjunto Habitacional Maria da Penha', localidade: 'Álvares Machado/SP', cep: '19165-614'},
+      {logradouro: 'Rua Ana Paula Alves Grotto', bairro: 'Conjunto Habitacional Maria da Penha', localidade: 'Álvares Machado/SP', cep: '19165-610'},
+      {logradouro: 'Rua Clóvis Bevilacqua', bairro: 'Conjunto Habitacional Maria da Penha', localidade: 'Álvares Machado/SP', cep: '19165-620'},
+      {logradouro: 'Rua José Dutra Neto', bairro: 'Conjunto Habitacional Maria da Penha', localidade: 'Álvares Machado/SP', cep: '19165-612'},
+      {logradouro: 'Rua Jovane Nogueira dos Anjos', bairro: 'Conjunto Habitacional Maria da Penha', localidade: 'Álvares Machado/SP', cep: '19165-618'},
+      {logradouro: 'Rua Zenaide Santana Barbosa', bairro: 'Conjunto Habitacional Maria da Penha', localidade: 'Álvares Machado/SP', cep: '19165-616'},
+      // Conjunto Habitacional Vereador Antonio Prado
+      {logradouro: 'Rua Antonio Gasques Rebouças', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-720'},
+      {logradouro: 'Rua Claudimiro Pereira da Silva', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-716'},
+      {logradouro: 'Rua Dayane Morais de Oliveira', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-722'},
+      {logradouro: 'Rua Divino Campi', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-736'},
+      {logradouro: 'Rua Fabiano Aparecido Macedo Santos', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-718'},
+      {logradouro: 'Rua Francisco Gonçalves de Abreu', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-726'},
+      {logradouro: 'Rua Gabriel Santos Silva', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-706'},
+      {logradouro: 'Rua Hilael Cristina Mariano Oliveira Rissi', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-714'},
+      {logradouro: 'Rua João Ederli', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-728'},
+      {logradouro: 'Rua José Antonio Luiz', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-708'},
+      {logradouro: 'Rua Lourenço Manoel de Oliveira', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-710'},
+      {logradouro: 'Rua Maria de Lourdes Diniz', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-712'},
+      {logradouro: 'Rua Maria do Carmo Silva', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-702'},
+      {logradouro: 'Rua Marlene da Silva André', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-704'},
+      {logradouro: 'Rua Otávio André', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-732'},
+      {logradouro: 'Rua Otavio Domingos', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-730'},
+      {logradouro: 'Rua Rita Pereira de Oliveira', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-734'},
+      {logradouro: 'Rua Vivian Matias da Silva', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-724'},
+      {logradouro: 'Rua Zumira Dias da Silva', bairro: 'Conjunto Habitacional Vereador Antonio Prado', localidade: 'Álvares Machado/SP', cep: '19165-700'}
     ];
 
     function buscarCEP() {
@@ -109,7 +297,7 @@
       if (encontrados.length > 0) {
         let ceps = encontrados.map((e, idx) => `
           <strong>CEP:</strong> <span id='cep${idx}'>${e.cep}</span>
-          <button style='margin-left:8px;padding:2px 8px;font-size:0.9em;' onclick="copiarCEP('${e.cep}')">Copiar</button><br>
+          <button class='copy-btn' onclick="copiarCEP('${e.cep}')">Copiar</button><br>
           <strong>Endereço:</strong> ${e.logradouro}, ${e.bairro}<br>
           <strong>Cidade/UF:</strong> ${e.localidade}
         `).join('<hr>');
