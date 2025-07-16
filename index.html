@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 2rem;
+      margin-top: 3rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      color: #2c3e50;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0 1rem 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #2980b9;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #3498db;
+    }
+    .result {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #eaf6fb;
+      border-radius: 5px;
+      color: #2c3e50;
+    }
+    @media (max-width: 500px) {
+      .container {
+        padding: 1rem;
+        margin-top: 1rem;
+      }
+    }
+  </style>
+  </head>
+  <body>
+  <div class="container">
+    <h1>Sou Machado</h1>
+    <label for="rua">Digite o nome da sua rua:</label>
+  <input type="text" id="rua" placeholder="Ex: Avenida Paulista" oninput="buscarCEP()">
+    <div id="resultado" class="result" style="display:none;"></div>
+  </div>
+  <script>
+    const panoramaRuas = [
+      {logradouro: 'Avenida Castro Alves', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-758'},
+      {logradouro: 'Avenida José de Alencar', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-746'},
+      {logradouro: 'Rua Álvares de Azevedo', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-772'},
+      {logradouro: 'Rua Basilio da Gama', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-756'},
+      {logradouro: 'Rua Clóvis Bevilacqua', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-762'},
+      {logradouro: 'Rua Coelho Neto', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-768'},
+      {logradouro: 'Rua Eduardo Prado', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-764'},
+      {logradouro: 'Rua Graça Aranha', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-742'},
+      {logradouro: 'Rua Graciliano Ramos', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-770'},
+      {logradouro: 'Rua Inglês de Souza', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-740'},
+      {logradouro: 'Rua Júlio Ribeiro', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-766'},
+      {logradouro: 'Rua Manoel Bandeira', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-752'},
+      {logradouro: 'Rua Mario de Andrade', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-754'},
+      {logradouro: 'Rua Silvio Romero', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-750'},
+      {logradouro: 'Rua Souza Caldas', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-744'},
+      {logradouro: 'Rua Visconde Taunay', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-748'},
+      {logradouro: 'Travessa Antonio Alves Macedo', bairro: 'Jardim Panorama', localidade: 'Álvares Machado/SP', cep: '19165-760'}
+    ];
+
+    function buscarCEP() {
+      const rua = document.getElementById('rua').value.trim().toLowerCase();
+      const resultado = document.getElementById('resultado');
+      resultado.innerHTML = '';
+      if (!rua) {
+        resultado.style.display = 'none';
+        return;
+      }
+      resultado.style.display = 'block';
+      const encontrados = panoramaRuas.filter(r => r.logradouro.toLowerCase().includes(rua));
+      if (encontrados.length > 0) {
+        let ceps = encontrados.map((e, idx) => `
+          <strong>CEP:</strong> <span id='cep${idx}'>${e.cep}</span>
+          <button style='margin-left:8px;padding:2px 8px;font-size:0.9em;' onclick="copiarCEP('${e.cep}')">Copiar</button><br>
+          <strong>Endereço:</strong> ${e.logradouro}, ${e.bairro}<br>
+          <strong>Cidade/UF:</strong> ${e.localidade}
+        `).join('<hr>');
+        resultado.innerHTML = ceps;
+    window.copiarCEP = function(cep) {
+      // Remove qualquer caractere não numérico
+      const numeroCep = cep.replace(/\D/g, '');
+      navigator.clipboard.writeText(numeroCep);
+    }
+      } else {
+        resultado.innerHTML = 'Nenhum CEP encontrado para esta rua no Jardim Panorama.';
+      }
+    }
+  </script>
+  </body>
+  </html>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
