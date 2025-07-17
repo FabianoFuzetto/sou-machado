@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sou Machado</title>
   <style>
+    @media (max-width: 700px) {
+      form[action^="https://formspree.io"] textarea {
+        max-width: 100%;
+        min-width: 0;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
     ::placeholder {
       font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
       font-size: 1.08rem;
