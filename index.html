@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sou Machado</title>
   <style>
+    ::placeholder {
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      font-size: 1.08rem;
+      color: #6b8c7b;
+      opacity: 1;
+    }
     body {
       font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
       background: linear-gradient(120deg, #e8f0ee 0%, #f7fafc 100%);
@@ -54,12 +60,12 @@
       background: #fff;
     }
     h1 {
-      color: #234c2e;
-      text-align: center;
-      font-size: 2.5rem;
-      font-weight: 700;
-      letter-spacing: 0.09em;
-      margin-bottom: 1.5rem;
+  color: #234c2e;
+  text-align: center;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  margin-bottom: 1.2rem;
     }
     .subtitle {
       color: #4a6c5a;
@@ -195,20 +201,23 @@
         <div class="logo-bg">
           <img src="Gemini_Generated_Image_j9oll4j9oll4j9ol.png" alt="Logo Sou Machado" class="logo">
         </div>
-        <div class="subtitle">Encontre o CEP do seu endereço em Álvares Machado</div>
-        <label for="rua" style="font-weight:600;color:#234c2e;margin-bottom:0.5rem;font-size:1.08rem;align-self:flex-start;display:flex;align-items:center;gap:0.5em;">
-          <span style="font-size:1.2em;vertical-align:middle;">🛣️</span> Digite o nome da sua rua:
-        </label>
+  <footer style="width:100%;text-align:center;font-size:0.98rem;color:#7a8c85;margin:32px 0 8px 0;opacity:0.35;letter-spacing:0.01em;">by Fabiano Fuzetto</footer>
+  <h1>Encontre o CEP do seu endereço em Álvares Machado</h1>
+  <label for="rua" class="section-label"><span style="font-size:1.2em;vertical-align:middle;">🛣️</span> Digite o nome da sua rua:</label>
         <input type="text" id="rua" placeholder="Exemplo: Av. das Américas" oninput="buscarCEP()" style="font-style: italic; color: #6b8c7b; background: #f7fafc;">
         <div id="resultado" class="result" style="display:none;"></div>
         <div class="phones-section" style="width:100%;margin-top:2.2rem;">
-          <h2 class="phones-title">
-            <span class="phone-icon">📞</span> Telefones Úteis
-          </h2>
-          <label for="telefone-search" style="font-weight:600;color:#234c2e;margin-bottom:0.5rem;font-size:1.08rem;align-self:flex-start;">Digite o nome do local ou serviço:</label>
+          <label class="section-label" style="display:flex;align-items:center;gap:0.5em;"><span class="phone-icon">📞</span> Telefones Úteis</label>
+          <label for="telefone-search" class="section-label">Digite o nome do local ou serviço:</label>
           <input type="text" id="telefone-search" placeholder="Exemplo: Prefeitura Municipal" oninput="buscarTelefone()" style="width:100%;padding:0.9rem;margin:0.5rem 0 1.5rem 0;border:1.5px solid #b2c2b9;border-radius:10px;font-size:1.15rem;background:#f7fafc;font-style:italic;color:#6b8c7b;box-sizing:border-box;">
           <div id="resultado-telefone" class="result" style="display:none;"></div>
         </div>
+        <form action="https://formspree.io/f/xoqgqjzq" method="POST" style="background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(44,62,80,0.07);padding:1.5rem 1.2rem 1.2rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;margin-top:2.5rem;">
+          <label for="mensagem" class="section-label" style="display:flex;align-items:center;gap:0.5em;"><span style="font-size:1.2em;vertical-align:middle;">💬</span> Dúvidas ou sugestão</label>
+          <textarea id="mensagem" name="message" required rows="3" placeholder="Digite sua mensagem aqui..." style="width:100%;max-width:420px;padding:0.9rem;border:1.5px solid #b2c2b9;border-radius:10px;font-size:1.08rem;background:#f7fafc;resize:vertical;"></textarea>
+          <input type="hidden" name="_replyto" value="fabianofuzetto@gmail.com">
+          <button type="submit" style="background:#234c2e;color:#fff;padding:0.7em 2.2em;border:none;border-radius:8px;font-size:1.08rem;font-weight:600;cursor:pointer;transition:background 0.2s;">Enviar</button>
+        </form>
     </div>
   <script>
     const telefonesUteis = [
@@ -726,219 +735,6 @@
   ,{logradouro: 'Rua Tereza Calixto Magalhães', bairro: 'Residencial Grand Club', localidade: 'Álvares Machado/SP', cep: '19160-558'}
   ,{logradouro: 'Rua Tino Sanvezzo', bairro: 'Residencial Grand Club', localidade: 'Álvares Machado/SP', cep: '19160-550'}
   ,{logradouro: 'Rua Túllio Tarroco', bairro: 'Residencial Grand Club', localidade: 'Álvares Machado/SP', cep: '19160-572'}
-  ,{logradouro: 'Rua José Martins', bairro: 'Residencial Ipê', localidade: 'Álvares Machado/SP', cep: '19167-014'}
-  ,{logradouro: 'Rua Luiz Carlos Ramos', bairro: 'Residencial Ipê', localidade: 'Álvares Machado/SP', cep: '19167-012'}
-  ,{logradouro: 'Rua Vitório Mazzaro', bairro: 'Residencial Ipê', localidade: 'Álvares Machado/SP', cep: '19167-010'}
-  ,{logradouro: 'Rua Erminio Boigues', bairro: 'Residencial Ivanira', localidade: 'Álvares Machado/SP', cep: '19167-002'}
-  ,{logradouro: 'Rua Ernesto Boigues', bairro: 'Residencial Ivanira', localidade: 'Álvares Machado/SP', cep: '19167-004'}
-  ,{logradouro: 'Rua Rui Barbosa', bairro: 'Residencial Ivanira', localidade: 'Álvares Machado/SP', cep: '19167-000'}
-  ,{logradouro: 'Alameda das Andorinhas', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-020'}
-  ,{logradouro: 'Alameda das Araras', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-004'}
-  ,{logradouro: 'Alameda das Coleirinhas', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-028'}
-  ,{logradouro: 'Alameda das Gaivotas', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-022'}
-  ,{logradouro: 'Alameda dos Azulões', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-014'}
-  ,{logradouro: 'Alameda dos Beija-flor', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-016'}
-  ,{logradouro: 'Alameda dos Bem-te-vis', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-002'}
-  ,{logradouro: 'Alameda dos Canários', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-006'}
-  ,{logradouro: 'Alameda dos Papagaios', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-008'}
-  ,{logradouro: 'Alameda dos Pardais', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-026'}
-  ,{logradouro: 'Alameda dos Rouxinós', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-024'}
-  ,{logradouro: 'Alameda dos Sabiás', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-030'}
-  ,{logradouro: 'Alameda dos Sanhaços', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-018'}
-  ,{logradouro: 'Alameda dos Ticos-Ticos', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-010'}
-  ,{logradouro: 'Rua Ana Inez Coracini de Meira', bairro: 'Residencial Izabel Mizobe', localidade: 'Álvares Machado/SP', cep: '19165-001'}
-  ,{logradouro: 'Rua Alice de Lima dos Santos', bairro: 'Residencial Luso Brasileira', localidade: 'Álvares Machado/SP', cep: '19167-516'}
-  ,{logradouro: 'Rua Euridece Pelosi da Silva', bairro: 'Residencial Luso Brasileira', localidade: 'Álvares Machado/SP', cep: '19167-526'}
-  ,{logradouro: 'Rua Idalina dos Santos Vacaro', bairro: 'Residencial Luso Brasileira', localidade: 'Álvares Machado/SP', cep: '19167-518'}
-  ,{logradouro: 'Rua Jéssica de Souza Bonatte', bairro: 'Residencial Luso Brasileira', localidade: 'Álvares Machado/SP', cep: '19167-522'}
-  ,{logradouro: 'Rua Joana Pereira dos Santos', bairro: 'Residencial Luso Brasileira', localidade: 'Álvares Machado/SP', cep: '19167-520'}
-  ,{logradouro: 'Rua Maria Calles Rodrigues', bairro: 'Residencial Luso Brasileira', localidade: 'Álvares Machado/SP', cep: '19167-512'}
-  ,{logradouro: 'Rua Professora Ephigenia Villalva', bairro: 'Residencial Luso Brasileira', localidade: 'Álvares Machado/SP', cep: '19167-524'}
-  ,{logradouro: 'Rua Thereza Delolio Catucci', bairro: 'Residencial Luso Brasileira', localidade: 'Álvares Machado/SP', cep: '19167-510'}
-  ,{logradouro: 'Rua Zulmira Costa Soares', bairro: 'Residencial Luso Brasileira', localidade: 'Álvares Machado/SP', cep: '19167-514'}
-  ,{logradouro: 'Avenida Professora Marcia Helena Fernandez Araujo', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-546'}
-  ,{logradouro: 'Rua Alfredo Marcondes', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-550'}
-  ,{logradouro: 'Rua Amanda Fernandes', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-554'}
-  ,{logradouro: 'Rua Dolores Moçon Fernandes', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-558'}
-  ,{logradouro: 'Rua Evaristo Fernandes', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-556'}
-  ,{logradouro: 'Rua Festo Silvério', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-574'}
-  ,{logradouro: 'Rua Geraldo Arantes de Souza', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-562'}
-  ,{logradouro: 'Rua Ilda Arantes de Souza', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-566'}
-  ,{logradouro: 'Rua Julia Arantes de Souza', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-544'}
-  ,{logradouro: 'Rua Laurêncio de Oliveira Brás', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-572'}
-  ,{logradouro: 'Rua Mario Keniti Seko', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-560'}
-  ,{logradouro: 'Rua Paulo Primo', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-570'}
-  ,{logradouro: 'Rua Pedro da Silva Rocha', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-540'}
-  ,{logradouro: 'Rua Professora Gilmere Avallaneda Louzada de Oliveira', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-548'}
-  ,{logradouro: 'Rua Rui Arantes de Souza', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-564'}
-  ,{logradouro: 'Rua Salvador Peres Pretel', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-542'}
-  ,{logradouro: 'Rua Sebastião Arantes de Souza', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-552'}
-  ,{logradouro: 'Rua Teodoro Figueiredo dos Santos', bairro: 'Residencial Marcia Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-568'}
-  ,{logradouro: 'Rua Almeida Cardoso', bairro: 'Residencial Maria de Lourdes', localidade: 'Álvares Machado/SP', cep: '19162-062'}
-  ,{logradouro: 'Rua Antonio Gaban', bairro: 'Residencial Maria de Lourdes', localidade: 'Álvares Machado/SP', cep: '19162-058'}
-  ,{logradouro: 'Rua José Alves de Bonfim', bairro: 'Residencial Maria de Lourdes', localidade: 'Álvares Machado/SP', cep: '19162-060'}
-  ,{logradouro: 'Rua José Garcia Segura', bairro: 'Residencial Maria de Lourdes', localidade: 'Álvares Machado/SP', cep: '19162-064'}
-  ,{logradouro: 'Rua Martinópolis', bairro: 'Residencial Maria de Lourdes', localidade: 'Álvares Machado/SP', cep: '19162-066'}
-  ,{logradouro: 'Rua Presidente Bernardes', bairro: 'Residencial Maria de Lourdes', localidade: 'Álvares Machado/SP', cep: '19162-052'}
-  ,{logradouro: 'Rua Rancharia', bairro: 'Residencial Maria de Lourdes', localidade: 'Álvares Machado/SP', cep: '19162-054'}
-  ,{logradouro: 'Rua Regente Feijó', bairro: 'Residencial Maria de Lourdes', localidade: 'Álvares Machado/SP', cep: '19162-050'}
-  ,{logradouro: 'Travessa Antônio Ferrucci', bairro: 'Residencial Maria de Lourdes', localidade: 'Álvares Machado/SP', cep: '19162-056'}
-  ,{logradouro: 'Rua Geraldo Ribeiro', bairro: 'Residencial Maria de Lourdes II', localidade: 'Álvares Machado/SP', cep: '19162-080'}
-  ,{logradouro: 'Rua Guerino Notário', bairro: 'Residencial Maria de Lourdes II', localidade: 'Álvares Machado/SP', cep: '19162-074'}
-  ,{logradouro: 'Rua Ismael dos Santos Reigota', bairro: 'Residencial Maria de Lourdes II', localidade: 'Álvares Machado/SP', cep: '19162-076'}
-  ,{logradouro: 'Rua João Felicio Parmezan', bairro: 'Residencial Maria de Lourdes II', localidade: 'Álvares Machado/SP', cep: '19162-072'}
-  ,{logradouro: 'Rua Manoel Soares Galvao', bairro: 'Residencial Maria de Lourdes II', localidade: 'Álvares Machado/SP', cep: '19162-070'}
-  ,{logradouro: 'Rua Wilson Jorge', bairro: 'Residencial Maria de Lourdes II', localidade: 'Álvares Machado/SP', cep: '19162-078'}
-  ,{logradouro: 'Rua Alberto Biscoola', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-652'}
-  ,{logradouro: 'Rua Alcides Aglio', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-658'}
-  ,{logradouro: 'Rua Benedicto Vieira Leite', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-636'}
-  ,{logradouro: 'Rua Evaristo da Silva Rego', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-646'}
-  ,{logradouro: 'Rua Francisco Vacaro Soares', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-648'}
-  ,{logradouro: 'Rua José Antonio Leite', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-638'}
-  ,{logradouro: 'Rua José Romera', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-630'}
-  ,{logradouro: 'Rua Laudelino da Silva', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-640'}
-  ,{logradouro: 'Rua Luiz Carlos Carlucci', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-650'}
-  ,{logradouro: 'Rua Luiz Carlos Ramos', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-644'}
-  ,{logradouro: 'Rua Manoel Pereira Neves', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-632'}
-  ,{logradouro: 'Rua Marcos Paulo Soares Martins', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-654'}
-  ,{logradouro: 'Rua Nair Peres Novaes', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-656'}
-  ,{logradouro: 'Rua Oswaldo Fernandes de Oliveira', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-634'}
-  ,{logradouro: 'Rua Roque Catucci', bairro: 'Residencial Nova Califórnia', localidade: 'Álvares Machado/SP', cep: '19162-642'}
-  ,{logradouro: 'Avenida Arthur Boigues Filho (Avenida da Amizade)', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-041'}
-  ,{logradouro: 'Avenida das Hortências', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-044'}
-  ,{logradouro: 'Rua das Acácias', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-060'}
-  ,{logradouro: 'Rua das Alfazemas', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-080'}
-  ,{logradouro: 'Rua das Azaléias', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-082'}
-  ,{logradouro: 'Rua das Begônias', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-076'}
-  ,{logradouro: 'Rua das Bromélias', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-054'}
-  ,{logradouro: 'Rua das Camélias', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-084'}
-  ,{logradouro: 'Rua das Flores do Campo', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-042'}
-  ,{logradouro: 'Rua das Gardênias', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-062'}
-  ,{logradouro: 'Rua das Lavandas', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-056'}
-  ,{logradouro: 'Rua das Magnólias', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-086'}
-  ,{logradouro: 'Rua das Margaridas', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-066'}
-  ,{logradouro: 'Rua das Palmas', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-040'}
-  ,{logradouro: 'Rua das Petúnias', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-052'}
-  ,{logradouro: 'Rua das Rosas', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-058'}
-  ,{logradouro: 'Rua das Violetas', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-050'}
-  ,{logradouro: 'Rua do Ipê Amarelo', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-072'}
-  ,{logradouro: 'Rua dos Alecrins', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-068'}
-  ,{logradouro: 'Rua dos Amarantos', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-046'}
-  ,{logradouro: 'Rua dos Girassóis', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-074'}
-  ,{logradouro: 'Rua dos Hibiscos', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-064'}
-  ,{logradouro: 'Rua dos Jacintos', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-048'}
-  ,{logradouro: 'Rua Íris', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-070'}
-  ,{logradouro: 'Rua Lírio do Vale', bairro: 'Residencial Portinari II', localidade: 'Álvares Machado/SP', cep: '19165-078'}
-  ,{logradouro: 'Rua Altino Sudatti', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-556'}
-  ,{logradouro: 'Rua Anna Romero Michelim', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-546'}
-  ,{logradouro: 'Rua Antonio Adriano Bolocenha', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-564'}
-  ,{logradouro: 'Rua Antonio Alberto Cristofano', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-552'}
-  ,{logradouro: 'Rua Antonio Barbado', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-534'}
-  ,{logradouro: 'Rua Bernardino Carmello Aranda Sanches', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-570'}
-  ,{logradouro: 'Rua Doutor Aristeu Suco Hatsumura', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-532'}
-  ,{logradouro: 'Rua Emília Mauro Alexandre', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-578'}
-  ,{logradouro: 'Rua Estanislau Camargo da Costa', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-544'}
-  ,{logradouro: 'Rua Felicio Antonio Rossi', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-566'}
-  ,{logradouro: 'Rua Gilberto Dolfini', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-568'}
-  ,{logradouro: 'Rua Izidoro Valério', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-548'}
-  ,{logradouro: 'Rua Jesuel Pereira da Silva', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-580'}
-  ,{logradouro: 'Rua José Ferreira Araújo', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-550'}
-  ,{logradouro: 'Rua José Honorato Filho', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-540'}
-  ,{logradouro: 'Rua José Martin Peron', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-576'}
-  ,{logradouro: 'Rua Lauro Antonio da Silva', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-558'}
-  ,{logradouro: 'Rua Lizanias de Moares', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-572'}
-  ,{logradouro: 'Rua Luiz Lucchetti', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-542'}
-  ,{logradouro: 'Rua Marcelino Garcia Peres', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-554'}
-  ,{logradouro: 'Rua Maria Fachini de Cesare', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-538'}
-  ,{logradouro: 'Rua Miguel Maldonado Sanches', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-574'}
-  ,{logradouro: 'Rua Natal Ronchi', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-560'}
-  ,{logradouro: 'Rua Odair José Cosso', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-536'}
-  ,{logradouro: 'Rua Pashoal Catucci', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-562'}
-  ,{logradouro: 'Rua Sebastião Ramos', bairro: 'Residencial Valência', localidade: 'Álvares Machado/SP', cep: '19167-530'}
-  ,{logradouro: 'Rua Alcides Ropelli Sanvezzo', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-852'}
-  ,{logradouro: 'Rua Alfeu Ferruzzi Negri', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-850'}
-  ,{logradouro: 'Rua Antero Moreira França', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-872'}
-  ,{logradouro: 'Rua Antonio Aranda', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-836'}
-  ,{logradouro: 'Rua Antonio Joaquim Alexandre (Branco)', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-862'}
-  ,{logradouro: 'Rua Antonio Rodrigues Pontes', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-842'}
-  ,{logradouro: 'Rua Carlos Nobuco Uemura', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-846'}
-  ,{logradouro: 'Rua Guilherme Barão Martin Marques', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-860'}
-  ,{logradouro: 'Rua João Antonio Rosa', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-848'}
-  ,{logradouro: 'Rua Jorge Dib Abrahão', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-856'}
-  ,{logradouro: 'Rua Jorge Toshio Yamafuko', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-830'}
-  ,{logradouro: 'Rua José Felicio Meira', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-868'}
-  ,{logradouro: 'Rua José Rodrigues Pontes', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-854'}
-  ,{logradouro: 'Rua Luiz Henrique Sanchez Longo', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-834'}
-  ,{logradouro: 'Rua Maria do Carmo Venâncio de Campos', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-864'}
-  ,{logradouro: 'Rua Maria Gomes dos Santos', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-866'}
-  ,{logradouro: 'Rua Paschoal Martins Bernal', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-832'}
-  ,{logradouro: 'Rua Sebastião Padovani', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-858'}
-  ,{logradouro: 'Rua Shichiro Matsuda', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-840'}
-  ,{logradouro: 'Rua Valdomiro Sanches Lopes', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-844'}
-  ,{logradouro: 'Rua Valter Pense', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-838'}
-  ,{logradouro: 'Rua Wilson Senra Vidal', bairro: 'Residencial Valência II', localidade: 'Álvares Machado/SP', cep: '19167-870'}
-  ,{logradouro: 'Avenida Luiz Maioline', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-518'}
-  ,{logradouro: 'Avenida Mestre Koji Takamatsu', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-506'}
-  ,{logradouro: 'Rua Anacleto Avellaneda', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-502'}
-  ,{logradouro: 'Rua Angelin Negri', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-522'}
-  ,{logradouro: 'Rua Augusto Henklain', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-504'}
-  ,{logradouro: 'Rua Batista Lustre', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-516'}
-  ,{logradouro: 'Rua Gabriel Maluly', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-512'}
-  ,{logradouro: 'Rua Henrique Castilho Touro', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-510'}
-  ,{logradouro: 'Rua Ida Suniga', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-520'}
-  ,{logradouro: 'Rua Jacob Ioshinobu Aoki', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-514'}
-  ,{logradouro: 'Rua João Bartolo', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-500'}
-  ,{logradouro: 'Rua Luiz Gustavo Calderan', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-526'}
-  ,{logradouro: 'Rua Paulino Costa', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-524'}
-  ,{logradouro: 'Rua Virgilio Catussi', bairro: 'Residencial Valência III', localidade: 'Álvares Machado/SP', cep: '19160-508'}
-  ,{logradouro: 'Rua Armando Sales', bairro: 'Vila Euclides', localidade: 'Álvares Machado/SP', cep: '19162-190'}
-  ,{logradouro: 'Rua Barão do Rio Branco', bairro: 'Vila Euclides', localidade: 'Álvares Machado/SP', cep: '19162-196'}
-  ,{logradouro: 'Rua Euclides da Cunha', bairro: 'Vila Euclides', localidade: 'Álvares Machado/SP', cep: '19162-194'}
-  ,{logradouro: 'Rua General Osório', bairro: 'Vila Euclides', localidade: 'Álvares Machado/SP', cep: '19162-192'}
-  ,{logradouro: 'Rua Amazonas (Ferruzi)', bairro: 'Vila Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-186'}
-  ,{logradouro: 'Rua Armando Sales', bairro: 'Vila Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-184'}
-  ,{logradouro: 'Rua Barão do Rio Branco', bairro: 'Vila Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-180'}
-  ,{logradouro: 'Rua Thomaz Cantos', bairro: 'Vila Fernandes', localidade: 'Álvares Machado/SP', cep: '19162-182'}
-  ,{logradouro: 'Avenida Alfredo Marcondes', bairro: 'Vila Ikeda', localidade: 'Álvares Machado/SP', cep: '19162-214'}
-  ,{logradouro: 'Rua Barão do Rio Branco', bairro: 'Vila Ikeda', localidade: 'Álvares Machado/SP', cep: '19162-216'}
-  ,{logradouro: 'Rua José Bonifácio', bairro: 'Vila Ikeda', localidade: 'Álvares Machado/SP', cep: '19162-212'}
-  ,{logradouro: 'Rua Paulo Setubal', bairro: 'Vila Ikeda', localidade: 'Álvares Machado/SP', cep: '19162-210'}
-  ,{logradouro: 'Rua Vital Brasil', bairro: 'Vila Ikeda', localidade: 'Álvares Machado/SP', cep: '19162-218'}
-  ,{logradouro: 'Rua Jasmi Baptista', bairro: 'Vila Morimoto', localidade: 'Álvares Machado/SP', cep: '19162-152'}
-  ,{logradouro: 'Rua Presidente Prudente', bairro: 'Vila Morimoto', localidade: 'Álvares Machado/SP', cep: '19162-150'}
-  ,{logradouro: 'Rua Antonio Gaban', bairro: 'Vila Nossa Senhora da Paz', localidade: 'Álvares Machado/SP', cep: '19162-004'}
-  ,{logradouro: 'Rua Carlos Roberto da Silva', bairro: 'Vila Nossa Senhora da Paz', localidade: 'Álvares Machado/SP', cep: '19162-005'}
-  ,{logradouro: 'Rua Indiana', bairro: 'Vila Nossa Senhora da Paz', localidade: 'Álvares Machado/SP', cep: '19162-008'}
-  ,{logradouro: 'Rua Jeronimo Soares de Azevedo', bairro: 'Vila Nossa Senhora da Paz', localidade: 'Álvares Machado/SP', cep: '19162-016'}
-  ,{logradouro: 'Rua João Alexandrino Teixeira', bairro: 'Vila Nossa Senhora da Paz', localidade: 'Álvares Machado/SP', cep: '19162-012'}
-  ,{logradouro: 'Rua Orestes Bortoluzzi', bairro: 'Vila Nossa Senhora da Paz', localidade: 'Álvares Machado/SP', cep: '19162-006'}
-  ,{logradouro: 'Rua Presidente Bernardes', bairro: 'Vila Nossa Senhora da Paz', localidade: 'Álvares Machado/SP', cep: '19162-022'}
-  ,{logradouro: 'Rua Presidente Epitácio', bairro: 'Vila Nossa Senhora da Paz', localidade: 'Álvares Machado/SP', cep: '19162-018'}
-  ,{logradouro: 'Rua Presidente Prudente', bairro: 'Vila Nossa Senhora da Paz', localidade: 'Álvares Machado/SP', cep: '19162-000'}
-  ,{logradouro: 'Rua Presidente Venceslau', bairro: 'Vila Nossa Senhora da Paz', localidade: 'Álvares Machado/SP', cep: '19162-014'}
-  ,{logradouro: 'Rua Rancharia', bairro: 'Vila Nossa Senhora da Paz', localidade: 'Álvares Machado/SP', cep: '19162-002'}
-  ,{logradouro: 'Rua Regente Feijó', bairro: 'Vila Nossa Senhora da Paz', localidade: 'Álvares Machado/SP', cep: '19162-020'}
-  ,{logradouro: 'Rua Santo Anastácio', bairro: 'Vila Nossa Senhora da Paz', localidade: 'Álvares Machado/SP', cep: '19162-010'}
-  ,{logradouro: 'Rua Antônio Bortoluzzi', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-080'}
-  ,{logradouro: 'Rua Antonio Petinari', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-068'}
-  ,{logradouro: 'Rua Arthur Boigues', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-078'}
-  ,{logradouro: 'Rua Bandeirantes', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-088'}
-  ,{logradouro: 'Rua Fernando Costa', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-076'}
-  ,{logradouro: 'Rua Francisco Costa Souza', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-072'}
-  ,{logradouro: 'Rua Fuad Maluly', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-064'}
-  ,{logradouro: 'Rua Ismael Dias Silva', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-074'}
-  ,{logradouro: 'Rua João Emilio da Silveira', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-082'}
-  ,{logradouro: 'Rua Júlio de Mesquita', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-066'}
-  ,{logradouro: 'Rua Luiz Sanvezzo', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-062'}
-  ,{logradouro: 'Rua Monsenhor Nakamura', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-060'}
-  ,{logradouro: 'Rua Monteiro Lobato', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-086'}
-  ,{logradouro: 'Rua Oswaldo Cruz', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-084'}
-  ,{logradouro: 'Rua Santos Dumont', bairro: 'Vila Paulista', localidade: 'Álvares Machado/SP', cep: '19160-070'}
-  ,{logradouro: 'Rua Barão do Rio Branco', bairro: 'Vila Tupinambás', localidade: 'Álvares Machado/SP', cep: '19162-200'}
-  ,{logradouro: 'Rua da Glória', bairro: 'Vila Tupinambás', localidade: 'Álvares Machado/SP', cep: '19162-204'}
-  ,{logradouro: 'Rua Paulo Setubal', bairro: 'Vila Tupinambás', localidade: 'Álvares Machado/SP', cep: '19162-208'}
-  ,{logradouro: 'Rua Santo Antônio', bairro: 'Vila Tupinambás', localidade: 'Álvares Machado/SP', cep: '19162-202'}
-  ,{logradouro: 'Rua Sebastião', bairro: 'Vila Tupinambás', localidade: 'Álvares Machado/SP', cep: '19162-206'}
     ];
 
     function buscarCEP() {
