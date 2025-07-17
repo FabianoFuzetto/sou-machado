@@ -220,12 +220,13 @@
           <input type="text" id="telefone-search" placeholder="Exemplo: Prefeitura Municipal" oninput="buscarTelefone()" style="width:100%;padding:0.9rem;margin:0.5rem 0 1.5rem 0;border:1.5px solid #b2c2b9;border-radius:10px;font-size:1.15rem;background:#f7fafc;font-style:italic;color:#6b8c7b;box-sizing:border-box;">
           <div id="resultado-telefone" class="result" style="display:none;"></div>
         </div>
-        <form action="https://formspree.io/f/xoqgqjzq" method="POST" style="background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(44,62,80,0.07);padding:1.5rem 1.2rem 1.2rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;margin-top:2.5rem;">
+  <form id="formSugestao" action="https://formspree.io/f/manbnnnd" method="POST" style="background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(44,62,80,0.07);padding:1.5rem 1.2rem 1.2rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;margin-top:2.5rem;">
           <label for="mensagem" class="section-label" style="display:flex;align-items:center;gap:0.5em;"><span style="font-size:1.2em;vertical-align:middle;">💬</span> Dúvidas ou sugestão</label>
           <textarea id="mensagem" name="message" required rows="3" placeholder="Digite sua mensagem aqui..." style="width:100%;max-width:420px;padding:0.9rem;border:1.5px solid #b2c2b9;border-radius:10px;font-size:1.08rem;background:#f7fafc;resize:vertical;"></textarea>
           <input type="hidden" name="_replyto" value="fabianofuzetto@gmail.com">
           <button type="submit" style="background:#234c2e;color:#fff;padding:0.7em 2.2em;border:none;border-radius:8px;font-size:1.08rem;font-weight:600;cursor:pointer;transition:background 0.2s;">Enviar</button>
         </form>
+        <div id="msgAgradecimento" style="display:none;text-align:center;color:#234c2e;font-size:1.08rem;font-weight:600;margin-top:1.2em;">Recebemos sua mensagem, muito obrigado!</div>
     </div>
   <script>
     const telefonesUteis = [
@@ -772,6 +773,31 @@
         resultado.innerHTML = 'Nenhum CEP encontrado para esta rua no Jardim Panorama.';
       }
     }
+    // Feedback após envio do formulário de sugestão
+    document.addEventListener('DOMContentLoaded', function() {
+      var form = document.getElementById('formSugestao');
+      if(form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var data = new FormData(form);
+          fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          }).then(function(response) {
+            form.style.display = 'none';
+            document.getElementById('msgAgradecimento').style.display = 'block';
+            setTimeout(function() {
+              document.getElementById('msgAgradecimento').style.display = 'none';
+              form.reset();
+              form.style.display = 'flex';
+            }, 2600);
+          }).catch(function() {
+            alert('Erro ao enviar. Tente novamente.');
+          });
+        });
+      }
+    });
   </script>
   </body>
   </html>
