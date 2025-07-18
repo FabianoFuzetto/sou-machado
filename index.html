@@ -7,6 +7,28 @@
   <title>Sou Machado</title>
   <style>
     @media (max-width: 700px) {
+      section[style*='Tabela de Horários Pinheiro'], section[style*='background:#f7fafc'] {
+        padding: 1rem 0.3rem !important;
+      }
+      section[style*='Tabela de Horários Pinheiro'] h2, section[style*='background:#f7fafc'] h2 {
+        font-size: 1.05rem !important;
+        margin-bottom: 0.7rem !important;
+      }
+      section[style*='background:#e8f0ee'] {
+        padding: 0.5em 0.3em !important;
+        font-size: 0.98rem !important;
+      }
+      section[style*='background:#e8f0ee'] span {
+        font-size: 0.98rem !important;
+        word-break: break-word !important;
+      }
+      section[style*='background:#e8f0ee'] {
+        display: block !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+      }
+    }
+    @media (max-width: 700px) {
       form[action^="https://formspree.io"] textarea {
         max-width: 100%;
         min-width: 0;
@@ -209,7 +231,7 @@
         <div class="logo-bg">
           <img src="Gemini_Generated_Image_j9oll4j9oll4j9ol.png" alt="Logo Sou Machado" class="logo">
         </div>
-  <footer style="width:100%;text-align:center;font-size:0.98rem;color:#7a8c85;margin:32px 0 8px 0;opacity:0.35;letter-spacing:0.01em;">by Fabiano Fuzetto</footer>
+  <footer style="width:100%;text-align:center;font-size:0.98rem;color:#7a8c85;margin:8px 0 8px 0;opacity:0.35;letter-spacing:0.01em;">by Fabiano Fuzetto</footer>
   <h1>Encontre o CEP do seu endereço em Álvares Machado</h1>
   <label for="rua" class="section-label"><span style="font-size:1.2em;vertical-align:middle;">🛣️</span> Digite o nome da sua rua:</label>
         <input type="text" id="rua" placeholder="Exemplo: Av. das Américas" oninput="buscarCEP()" style="font-style: italic; color: #6b8c7b; background: #f7fafc;">
@@ -221,7 +243,43 @@
           <div id="resultado-telefone" class="result" style="display:none;"></div>
         </div>
   <form id="formSugestao" action="https://formspree.io/f/manbnnnd" method="POST" style="background:#fff;border-radius:16px;box-shadow:0 2px 12px rgba(44,62,80,0.07);padding:1.5rem 1.2rem 1.2rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;margin-top:2.5rem;">
-          <label for="mensagem" class="section-label" style="display:flex;align-items:center;gap:0.5em;"><span style="font-size:1.2em;vertical-align:middle;">💬</span> Dúvidas ou sugestão</label>
+  <section style="width:100%;margin-top:0.2em;background:#f7fafc;border-radius:16px;box-shadow:0 2px 12px rgba(44,62,80,0.07);padding:1.5rem 1.2rem;">
+    <h2 style="color:#234c2e;font-size:1.15rem;font-weight:700;margin-bottom:1.1rem;display:flex;align-items:center;gap:0.5em;"><span style="font-size:1.2em;">🚌</span>Hora do Busão - Passe R$ 6,60</h2>
+    <div style="margin-bottom:1.2em;">
+      <div style="font-weight:600;color:#234c2e;font-size:1.08rem;margin-bottom:0.3em;">De Segunda-feira a Sexta-feira</div>
+      <div style="background:#e8f0ee;border-radius:8px;padding:0.7em 1em;margin-bottom:0.5em;">
+        <span style="font-weight:600;color:#4a6c5a;">Saindo de Pres. Prudente:</span>
+        <span style="color:#234c2e;">06:05, 06:35, 06:40, 06:50, 07:20, 07:45, 08:00, 09:00, 10:00, 11:00, 12:00, 13:20, 13:40, 15:10, 15:50, 16:20, 16:45, 17:10, 17:30, 17:50, 18:05, 18:20, 19:30, 22:10</span>
+      </div>
+      <div style="background:#e8f0ee;border-radius:8px;padding:0.7em 1em;">
+        <span style="font-weight:600;color:#4a6c5a;">Saindo do Parque dos Pinheiros / Jd. Panorama:</span>
+        <span style="color:#234c2e;">05:30, 05:50, 06:00, 06:15, 06:40, 07:05, 07:15, 07:30, 08:00, 08:20, 08:40, 09:40, 11:00, 13:00, 13:40, 14:20, 14:45, 15:20, 15:50, 16:40, 17:10, 17:35, 18:35, 21:30</span>
+      </div>
+    </div>
+    <div style="margin-bottom:1.2em;">
+      <div style="font-weight:600;color:#234c2e;font-size:1.08rem;margin-bottom:0.3em;">Aos Sábados</div>
+      <div style="background:#e8f0ee;border-radius:8px;padding:0.7em 1em;margin-bottom:0.5em;">
+        <span style="font-weight:600;color:#4a6c5a;">Saindo de Pres. Prudente:</span>
+        <span style="color:#234c2e;">06:20, 07:00, 07:40, 08:20, 10:20, 11:00, 11:50, 12:20, 14:20, 15:40, 17:00, 18:10, 19:30, 22:10</span>
+      </div>
+      <div style="background:#e8f0ee;border-radius:8px;padding:0.7em 1em;">
+        <span style="font-weight:600;color:#4a6c5a;">Saindo do Parque do Pinheiros / Jd. Panorama:</span>
+        <span style="color:#234c2e;">05:40, 06:20, 07:00, 07:40, 08:20, 10:00, 11:00, 11:40, 13:00, 15:00, 16:20, 17:40, 18:40, 21:00</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-weight:600;color:#234c2e;font-size:1.08rem;margin-bottom:0.3em;">Aos Domingos e Feriados</div>
+      <div style="background:#e8f0ee;border-radius:8px;padding:0.7em 1em;margin-bottom:0.5em;">
+        <span style="font-weight:600;color:#4a6c5a;">Saindo de Pres. Prudente:</span>
+        <span style="color:#234c2e;">07:30, 12:00, 18:00, 19:30</span>
+      </div>
+      <div style="background:#e8f0ee;border-radius:8px;padding:0.7em 1em;">
+        <span style="font-weight:600;color:#4a6c5a;">Saindo do Parque dos Pinheiros / Jd. Panorama:</span>
+        <span style="color:#234c2e;">05:50, 08:30, 11:00, 17:20</span>
+      </div>
+    </div>
+  </section>
+          <label for="mensagem" class="section-label" style="display:flex;align-items:center;gap:0.5em;margin-top:2.2em;"><span style="font-size:1.2em;vertical-align:middle;">💬</span> Dúvidas ou sugestão</label>
           <textarea id="mensagem" name="message" required rows="3" placeholder="Digite sua mensagem aqui..." style="width:100%;max-width:420px;padding:0.9rem;border:1.5px solid #b2c2b9;border-radius:10px;font-size:1.08rem;background:#f7fafc;resize:vertical;"></textarea>
           <input type="hidden" name="_replyto" value="fabianofuzetto@gmail.com">
           <button type="submit" style="background:#234c2e;color:#fff;padding:0.7em 2.2em;border:none;border-radius:8px;font-size:1.08rem;font-weight:600;cursor:pointer;transition:background 0.2s;">Enviar</button>
@@ -244,11 +302,11 @@
   {nome: 'Prefeitura Municipal', numero: '(18) 3273-9300', tel: '01832739300'},
   {nome: 'Santa Casa', numero: '(18) 3273-1916', tel: '01832731916'},
   {nome: 'Sabesp', numero: '(18) 3273-1442', tel: '01832731442'},
-  {nome: 'Corpo de Bombeiros', numero: '(18) 193', tel: '018193'},
+  {nome: 'Corpo de Bombeiros', numero: '193', tel: '193'},
   {nome: 'Delegacias de Atendimento à Mulher', numero: '(18) 180', tel: '018180'},
-  {nome: 'Polícia Militar', numero: '(18) 190', tel: '018190'},
-  {nome: 'Disque-Denúncia', numero: '(18) 181', tel: '018181'},
-  {nome: 'Pronto-Socorro', numero: '(18) 192', tel: '018192'}
+  {nome: 'Polícia Militar', numero: '190', tel: '190'},
+  {nome: 'Disque-Denúncia', numero: '181', tel: '181'},
+  {nome: 'Pronto-Socorro', numero: '192', tel: '192'}
     ];
 
     function buscarTelefone() {
