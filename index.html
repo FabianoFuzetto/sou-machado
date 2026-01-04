@@ -57,6 +57,10 @@
 
     /* Telefones: garantir label e número em bloco flexível */
     .phones-section .phone-label{min-width:110px;font-weight:600;color:var(--muted)}
+    /* Linha de busca: alinhar rua e pesquisa de telefones em 2 colunas em telas maiores */
+    .search-row{width:100%;display:grid;grid-template-columns:1fr;gap:12px;align-items:start;margin-top:0.6rem}
+    .search-row .field{display:flex;flex-direction:column}
+    @media (min-width:700px){.search-row{grid-template-columns:1fr 1fr;gap:16px}}
 
     /* Regras responsivas */
     @media (max-width:700px){
@@ -86,15 +90,19 @@
         </div>
   <footer style="width:100%;text-align:center;font-size:0.98rem;color:var(--muted);margin:8px 0;opacity:0.85;letter-spacing:0.01em;">by Fabiano Fuzetto</footer>
   <h1>Encontre o CEP do seu endereço em Álvares Machado</h1>
-  <label for="rua" class="section-label">Digite o nome da sua rua:</label>
-        <input type="text" id="rua" placeholder="Exemplo: Av. das Américas" oninput="buscarCEP()" style="font-style: italic; color:var(--accent); background:#fff; border:1.2px solid rgba(15,23,42,0.06);">
-        <div id="resultado" class="result" style="display:none;"></div>
-        <div class="phones-section" style="width:100%;margin-top:2.2rem;">
-          <label class="section-label" style="display:flex;align-items:center;gap:0.5em;"><span class="phone-icon" aria-hidden="true">📞</span><span>Telefones Úteis</span></label>
-          <label for="telefone-search" class="section-label">Digite o nome do local ou serviço:</label>
-          <input type="text" id="telefone-search" placeholder="Exemplo: Prefeitura Municipal" oninput="buscarTelefone()" style="width:100%;padding:0.9rem;margin:0.5rem 0 1.5rem 0;border:1.5px solid rgba(43,108,176,0.14);border-radius:10px;font-size:1.15rem;background:#fff;font-style:italic;color:var(--muted);box-sizing:border-box;">
-          <div id="resultado-telefone" class="result" style="display:none;"></div>
-        </div>
+  <div class="search-row">
+    <div class="field">
+      <label for="rua" class="section-label">Digite o nome da sua rua:</label>
+      <input type="text" id="rua" placeholder="Exemplo: Av. das Américas" oninput="buscarCEP()" style="font-style: italic; color:var(--accent); background:#fff; border:1.2px solid rgba(15,23,42,0.06);">
+      <div id="resultado" class="result" style="display:none;"></div>
+    </div>
+    <div class="field phones-section">
+      <label class="section-label" style="display:flex;align-items:center;gap:0.5em;"><span class="phone-icon" aria-hidden="true">📞</span><span>Telefones Úteis</span></label>
+      <label for="telefone-search" class="section-label">Digite o nome do local ou serviço:</label>
+      <input type="text" id="telefone-search" placeholder="Exemplo: Prefeitura Municipal" oninput="buscarTelefone()" style="width:100%;padding:0.9rem;margin:0.5rem 0 1.5rem 0;border:1.5px solid rgba(43,108,176,0.14);border-radius:10px;font-size:1.15rem;background:#fff;font-style:italic;color:var(--muted);box-sizing:border-box;">
+      <div id="resultado-telefone" class="result" style="display:none;"></div>
+    </div>
+  </div>
   <form id="formSugestao" action="https://formspree.io/f/manbnnnd" method="POST" style="background:linear-gradient(180deg,#ffffff,#f8fbff);border-radius:12px;padding:1.2rem;display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;margin-top:2rem;border:2px solid rgba(43,108,176,0.12);">
   <section style="width:100%;margin-top:0.2em;background:transparent;border-radius:12px;padding:1rem;border:none;">
   <h2 style="color:var(--accent);font-size:1.05rem;font-weight:700;margin-bottom:0.9rem;display:flex;align-items:center;gap:0.5em;">Hora do Busão - Passe R$ 6,60</h2>
