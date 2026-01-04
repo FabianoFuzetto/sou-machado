@@ -29,10 +29,10 @@
     .section-label span, label span { font-size:1.15em; vertical-align:middle }
 
     /* Inputs e textarea (sobrepor estilos inline quando necessário) */
-    /* Modern form controls */
-    :root{--base-font:16px;--bg:#f6f8fb;--card:#ffffff;--accent:#2b6cb0;--muted:#6b7280;--success:#16a34a;--shadow:0 6px 20px rgba(15,23,42,0.06)}
-    input[type="text"], textarea { padding:0.8rem; border:1.2px solid rgba(15,23,42,0.06); border-radius:10px; font-size:clamp(0.95rem, 3.2vw, 1.15rem); background:#fff; }
-    input[type="text"]:focus, textarea:focus { border-color:var(--accent); outline:none; box-shadow:0 6px 18px rgba(43,108,176,0.12) }
+    /* Modern palette (blue) */
+    :root{--base-font:16px;--bg:#f6f8fb;--card:#ffffff;--accent:#2563eb;--muted:#6b7280;--success:#10b981;--shadow:0 6px 20px rgba(15,23,42,0.06);--input-border:rgba(15,23,42,0.06);--muted-border:rgba(15,23,42,0.04);--accent-soft:rgba(37,99,235,0.14);--accent-very-soft:rgba(37,99,235,0.12);--accent-dashed:rgba(37,99,235,0.18)}
+    input[type="text"], textarea { padding:0.8rem; border:1.2px solid var(--input-border); border-radius:10px; font-size:clamp(0.95rem, 3.2vw, 1.15rem); background:#fff; }
+    input[type="text"]:focus, textarea:focus { border-color:var(--accent); outline:none; box-shadow:0 6px 18px var(--accent-very-soft) }
 
     /* Placeholder legível */
     ::placeholder { font-family:'Montserrat','Segoe UI',Arial,sans-serif; font-size:1.02rem; color:var(--muted); opacity:1 }
@@ -54,8 +54,8 @@
     h1{color:#0f1724;text-align:center;font-size:1.4rem;font-weight:700;margin-bottom:0.8rem}
     .subtitle{color:var(--muted);text-align:center;font-size:1rem;margin-bottom:1.4rem;font-weight:500}
 
-    .result{margin-top:1rem;padding:1rem;background:linear-gradient(180deg,#fbfdff,#ffffff);border-radius:10px;color:#0f1724;font-size:1.03rem;border-left:4px solid var(--accent);box-shadow:0 6px 18px rgba(15,23,42,0.04)}
-    .result hr{border:none;border-top:2px dashed rgba(43,108,176,0.18);margin:1rem 0}
+    .result{margin-top:1rem;padding:1rem;background:linear-gradient(180deg,#fbfdff,#ffffff);border-radius:10px;color:#0f1724;font-size:1.03rem;border-left:4px solid var(--accent);box-shadow:0 6px 18px var(--muted-border)}
+    .result hr{border:none;border-top:2px dashed var(--accent-dashed);margin:1rem 0}
     .copy-btn{margin-left:10px;padding:6px 14px;font-size:0.95rem;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer}
 
     /* Telefones: garantir label e número em bloco flexível */
@@ -90,53 +90,53 @@
     <footer style="width:100%;text-align:center;font-size:0.98rem;color:var(--muted);margin:8px 0;opacity:0.85;letter-spacing:0.01em;">by Fabiano Fuzetto</footer>
     <h1>Encontre o CEP do seu endereço em Álvares Machado</h1>
     <label for="rua" class="section-label">Digite o nome da sua rua:</label>
-      <input type="text" id="rua" placeholder="Exemplo: Av. das Américas" oninput="buscarCEP()" style="font-style: italic; color:var(--accent); background:#fff; border:1.2px solid rgba(15,23,42,0.06);">
+      <input type="text" id="rua" placeholder="Exemplo: Av. das Américas" oninput="buscarCEP()" style="font-style: italic; color:var(--accent); background:#fff; border:1.2px solid var(--input-border);">
         <div id="resultado" class="result" style="display:none;"></div>
         <div class="phones-section" style="width:100%;margin-top:2.2rem;">
           <label class="section-label" style="display:flex;align-items:center;gap:0.5em;"><span class="phone-icon">📞</span> Telefones Úteis</label>
           <label for="telefone-search" class="section-label">Digite o nome do local ou serviço:</label>
-          <input type="text" id="telefone-search" placeholder="Exemplo: Prefeitura Municipal" oninput="buscarTelefone()" style="width:100%;padding:0.9rem;margin:0.5rem 0 1.5rem 0;border:1.5px solid rgba(43,108,176,0.14);border-radius:10px;font-size:1.15rem;background:#fff;font-style:italic;color:var(--muted);box-sizing:border-box;">
+          <input type="text" id="telefone-search" placeholder="Exemplo: Prefeitura Municipal" oninput="buscarTelefone()" style="width:100%;padding:0.9rem;margin:0.5rem 0 1.5rem 0;border:1.5px solid var(--accent-soft);border-radius:10px;font-size:1.15rem;background:#fff;font-style:italic;color:var(--muted);box-sizing:border-box;">
           <div id="resultado-telefone" class="result" style="display:none;"></div>
         </div>
-  <form id="formSugestao" action="https://formspree.io/f/manbnnnd" method="POST" style="background:linear-gradient(180deg,#ffffff,#f8fbff);border-radius:12px;padding:1.2rem;display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;margin-top:2rem;border:2px solid rgba(43,108,176,0.12);">
+  <form id="formSugestao" action="https://formspree.io/f/manbnnnd" method="POST" style="background:linear-gradient(180deg,#ffffff,#f8fbff);border-radius:12px;padding:1.2rem;display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;margin-top:2rem;border:2px solid var(--accent-very-soft);">
   <section style="width:100%;margin-top:0.2em;background:linear-gradient(135deg, #fef5e7 0%, #fff 100%);border-radius:16px;padding:1.5rem 1.2rem;border:none;box-shadow:inset 0 0 0 1px rgba(196,30,58,0.06);">
   <h2 style="color:var(--accent);font-size:1.05rem;font-weight:700;margin-bottom:0.9rem;display:flex;align-items:center;gap:0.5em;">Hora do Busão - Passe R$ 6,60</h2>
     <div style="margin-bottom:1.2em;">
       <div style="font-weight:600;color:var(--accent);font-size:1.08rem;margin-bottom:0.3em;">De Segunda-feira a Sexta-feira</div>
-      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;margin-bottom:0.5em;border:1px solid rgba(15,23,42,0.04);">
+      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;margin-bottom:0.5em;border:1px solid var(--muted-border);">
         <span style="font-weight:600;color:var(--accent);">Saindo de Prudente:</span>
         <span style="color:#0f1724;">06:05, 06:35, 06:40, 06:50, 07:20, 07:45, 08:00, 09:00, 10:00, 11:00, 12:00, 13:20, 13:40, 15:10, 15:50, 16:20, 16:45, 17:10, 17:30, 17:50, 18:05, 18:20, 19:30, 22:10</span>
       </div>
-      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;border:1px solid rgba(15,23,42,0.04);">
+      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;border:1px solid var(--muted-border);">
         <span style="font-weight:600;color:var(--accent);">Saindo do Pinheiro:</span>
         <span style="color:#0f1724;">05:30, 05:50, 06:00, 06:15, 06:40, 07:05, 07:15, 07:30, 08:00, 08:20, 08:40, 09:40, 11:00, 13:00, 13:40, 14:20, 14:45, 15:20, 15:50, 16:40, 17:10, 17:35, 18:35, 21:30</span>
       </div>
     </div>
     <div style="margin-bottom:1.2em;">
       <div style="font-weight:600;color:var(--accent);font-size:1.08rem;margin-bottom:0.3em;">Aos Sábados</div>
-      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;margin-bottom:0.5em;border:1px solid rgba(15,23,42,0.04);">
+      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;margin-bottom:0.5em;border:1px solid var(--muted-border);">
         <span style="font-weight:600;color:var(--accent);">Saindo de Prudente:</span>
         <span style="color:#0f1724;">06:20, 07:00, 07:40, 08:20, 10:20, 11:00, 11:50, 12:20, 14:20, 15:40, 17:00, 18:10, 19:30, 22:10</span>
       </div>
-      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;border:1px solid rgba(15,23,42,0.04);">
+      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;border:1px solid var(--muted-border);">
         <span style="font-weight:600;color:var(--accent);">Saindo do Pinheiro:</span>
         <span style="color:#0f1724;">05:40, 06:20, 07:00, 07:40, 08:20, 10:00, 11:00, 11:40, 13:00, 15:00, 16:20, 17:40, 18:40, 21:00</span>
       </div>
     </div>
     <div>
       <div style="font-weight:600;color:var(--accent);font-size:1.08rem;margin-bottom:0.3em;">Domingos e Feriados</div>
-      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;margin-bottom:0.5em;border:1px solid rgba(15,23,42,0.04);">
+      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;margin-bottom:0.5em;border:1px solid var(--muted-border);">
         <span style="font-weight:600;color:var(--accent);">Saindo de Prudente:</span>
         <span style="color:#0f1724;">07:30, 12:00, 18:00, 19:30</span>
       </div>
-      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;border:1px solid rgba(15,23,42,0.04);">
+      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;border:1px solid var(--muted-border);">
         <span style="font-weight:600;color:var(--accent);">Saindo do Pinheiro:</span>
         <span style="color:#0f1724;">05:50, 08:30, 11:00, 17:20</span>
       </div>
     </div>
   </section>
           <label for="mensagem" class="section-label" style="display:flex;align-items:center;gap:0.5em;margin-top:2.2em;">Dúvidas ou sugestão</label>
-          <textarea id="mensagem" name="message" required rows="3" placeholder="Digite sua mensagem aqui..." style="width:100%;max-width:420px;padding:0.9rem;border:1.5px solid rgba(43,108,176,0.14);border-radius:10px;font-size:1.08rem;background:#fff;resize:vertical;"></textarea>
+          <textarea id="mensagem" name="message" required rows="3" placeholder="Digite sua mensagem aqui..." style="width:100%;max-width:420px;padding:0.9rem;border:1.5px solid var(--accent-soft);border-radius:10px;font-size:1.08rem;background:#fff;resize:vertical;"></textarea>
           <input type="hidden" name="_replyto" value="fabianofuzetto@gmail.com">
           <button type="submit" style="background:var(--accent);color:#fff;padding:0.7em 2.2em;border:none;border-radius:8px;font-size:1.05rem;font-weight:600;cursor:pointer;transition:background 0.2s, transform 0.1s;">Enviar</button>
         </form>
@@ -182,7 +182,7 @@
       const encontrados = telefonesUteis.filter(t => t.nome.toLowerCase().includes(termo));
       if (encontrados.length > 0) {
         let lista = encontrados.map(t => `
-          <div style="margin-bottom:1.1em;display:flex;align-items:center;background:#fff;border-radius:8px;padding:0.7rem 1rem;box-shadow:0 6px 18px rgba(15,23,42,0.04); border-left: 3px solid var(--accent);">
+          <div style="margin-bottom:1.1em;display:flex;align-items:center;background:#fff;border-radius:8px;padding:0.7rem 1rem;box-shadow:0 6px 18px var(--muted-border); border-left: 3px solid var(--accent);">
             <span class="phone-label" style="min-width:140px;color:#0f1724;font-weight:500;">${t.nome}:</span>
             <a href="tel:${t.tel}" style="color:var(--accent);text-decoration:none;font-weight:600;margin-left:0.5em;transition:color 0.2s;">${t.numero}</a>
           </div>
