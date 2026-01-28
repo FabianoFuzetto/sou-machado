@@ -1,10 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sou Machado</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WY15TE929T"></script>
   <script>
@@ -14,70 +18,302 @@
     gtag('config', 'G-WY15TE929T');
   </script>
   <style>
-    /* Tema de Natal */
-    /* Holiday animations removed */
+    /* Nova Identidade Visual - Sou Machado */
+    
+    /* Variáveis de Tema */
+    :root {
+      --base-font: 16px;
+      --primary: #059669;
+      --primary-light: #10B981;
+      --primary-soft: rgba(5, 150, 105, 0.12);
+      --primary-very-soft: rgba(5, 150, 105, 0.06);
+      --accent: #F59E0B;
+      --accent-soft: rgba(245, 158, 11, 0.15);
+      --text-dark: #1E293B;
+      --text-muted: #64748B;
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --shadow: 0 4px 20px rgba(30, 41, 59, 0.08);
+      --shadow-lg: 0 8px 32px rgba(30, 41, 59, 0.12);
+      --input-border: rgba(30, 41, 59, 0.12);
+      --muted-border: rgba(30, 41, 59, 0.06);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font-heading: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
 
-    /* Base responsiva */
-    :root{--base-font:16px}
-    html{font-size:var(--base-font)}
+    html { font-size: var(--base-font) }
+
+    * { box-sizing: border-box }
 
     /* Normalize e garantir que elementos de formulário preencham largura */
-    input[type="text"], textarea, .result { width:100%; box-sizing:border-box }
+    input[type="text"], textarea, .result { width: 100%; box-sizing: border-box }
 
     /* Labels e ícones consistentes */
-    label, .section-label { display:block; font-weight:600; color:var(--muted); margin-bottom:0.5rem; font-size:clamp(0.95rem, 2.8vw, 1.08rem); }
-    .section-label span, label span { font-size:1.15em; vertical-align:middle }
+    label, .section-label { 
+      display: flex; 
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-body);
+      font-weight: 600; 
+      color: var(--text-muted); 
+      margin-bottom: 0.6rem; 
+      font-size: clamp(0.9rem, 2.8vw, 1rem); 
+    }
+    .section-label span, label span { font-size: 1.15em; vertical-align: middle }
 
-    /* Inputs e textarea (sobrepor estilos inline quando necessário) */
-    /* Modern palette (blue) */
-    :root{--base-font:16px;--bg:#f6f8fb;--card:#ffffff;--accent:#2563eb;--muted:#6b7280;--success:#10b981;--shadow:0 6px 20px rgba(15,23,42,0.06);--input-border:rgba(15,23,42,0.06);--muted-border:rgba(15,23,42,0.04);--accent-soft:rgba(37,99,235,0.14);--accent-very-soft:rgba(37,99,235,0.12);--accent-dashed:rgba(37,99,235,0.18)}
-    input[type="text"], textarea { padding:0.8rem; border:1.2px solid var(--input-border); border-radius:10px; font-size:clamp(0.95rem, 3.2vw, 1.15rem); background:#fff; }
-    input[type="text"]:focus, textarea:focus { border-color:var(--accent); outline:none; box-shadow:0 6px 18px var(--accent-very-soft) }
+    /* Inputs e textarea */
+    input[type="text"], textarea { 
+      padding: 0.95rem 1.1rem; 
+      border: 2px solid var(--input-border); 
+      border-radius: var(--radius-sm); 
+      font-family: var(--font-body);
+      font-size: clamp(0.95rem, 3.2vw, 1.05rem); 
+      background: var(--card);
+      color: var(--text-dark);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    input[type="text"]:focus, textarea:focus { 
+      border-color: var(--primary); 
+      outline: none; 
+      box-shadow: 0 0 0 4px var(--primary-soft);
+    }
 
     /* Placeholder legível */
-    ::placeholder { font-family:'Montserrat','Segoe UI',Arial,sans-serif; font-size:1.02rem; color:var(--muted); opacity:1 }
+    ::placeholder { 
+      font-family: var(--font-body); 
+      font-size: 0.95rem; 
+      color: var(--text-muted); 
+      opacity: 0.7;
+    }
 
-    body{font-family:'Montserrat','Segoe UI',Arial,sans-serif;background:var(--bg);margin:0;padding:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding-bottom:48px;position:relative;overflow-x:hidden;color:#0f1724}
-    /* Removed decorative pseudo-elements for holiday */
+    body {
+      font-family: var(--font-body);
+      background: linear-gradient(180deg, var(--bg) 0%, #EEF2F6 100%);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 48px;
+      position: relative;
+      overflow-x: hidden;
+      color: var(--text-dark);
+    }
 
-    .main-wrapper{width:100%;max-width:600px;margin:48px auto 0;padding:0 24px;position:relative;z-index:10}
-    .container{background:#fff;padding:2.5rem;border-radius:24px;box-shadow:0 8px 32px rgba(44,62,80,0.13);display:flex;flex-direction:column;align-items:center}
-    .container::before{position:absolute;top:-15px;left:50%;transform:translateX(-50%);font-size:2em}
+    .main-wrapper {
+      width: 100%;
+      max-width: 640px;
+      margin: 32px auto 0;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .container {
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid var(--muted-border);
+    }
 
     /* Ensure top-level labels in the container align left (not centered by flex parent) */
     .container > label.section-label { align-self: flex-start; margin-left: 0 }
     .container > input[type="text"]#rua { align-self: stretch }
 
-    .logo-bg{background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;width:180px;height:180px;box-shadow:0 2px 12px rgba(44,62,80,0.10);margin:1.2rem 0 1.5rem}
-    .logo{width:160px;height:160px;object-fit:cover;border-radius:50%;opacity:0.9}
-
-    h1{color:#0f1724;text-align:center;font-size:1.4rem;font-weight:700;margin-bottom:0.8rem}
-    .subtitle{color:var(--muted);text-align:center;font-size:1rem;margin-bottom:1.4rem;font-weight:500}
-
-    .result{margin-top:1rem;padding:1rem;background:linear-gradient(180deg,#fbfdff,#ffffff);border-radius:10px;color:#0f1724;font-size:1.03rem;border-left:4px solid var(--accent);box-shadow:0 6px 18px var(--muted-border)}
-    .result hr{border:none;border-top:2px dashed var(--accent-dashed);margin:1rem 0}
-    .copy-btn{margin-left:10px;padding:6px 14px;font-size:0.95rem;background:var(--accent);color:#fff;border:none;border-radius:8px;cursor:pointer}
-
-    /* Telefones: garantir label e número em bloco flexível */
-    .phones-section .phone-label{min-width:110px;font-weight:600;color:var(--muted)}
-
-    /* Regras responsivas */
-    @media (max-width:700px){
-      .main-wrapper{max-width:100vw;padding:0 4vw;margin:16px auto}
-      .container{padding:1rem;border-radius:14px}
-      h1{font-size:1.18rem}
-      .subtitle{font-size:1rem;margin-bottom:1.2rem}
-      .logo-bg{width:56px;height:56px}
-      .logo{width:44px;height:44px}
-      .result{font-size:1rem;padding:0.7rem}
-      label, .section-label { font-size:clamp(0.95rem,3.6vw,1rem) }
+    .logo-bg {
+      background: linear-gradient(135deg, var(--primary-soft) 0%, var(--primary-very-soft) 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 130px;
+      height: 130px;
+      box-shadow: 0 4px 16px rgba(5, 150, 105, 0.15);
+      margin: 0.5rem 0 1rem;
+      border: 3px solid var(--primary-soft);
+    }
+    .logo {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius: 50%;
     }
 
-    @media (max-width:400px){
-      .main-wrapper{padding:0 3vw}
-      .container{padding:0.6rem}
-      .logo-bg{width:40px;height:40px}
-      .logo{width:32px;height:32px}
+    h1 {
+      font-family: var(--font-heading);
+      color: var(--text-dark);
+      text-align: center;
+      font-size: clamp(1.25rem, 5vw, 1.5rem);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1rem, 4vw, 1.15rem);
+      font-weight: 600;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0 0 1rem 0;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      text-align: center;
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+      font-weight: 500;
+    }
+
+    .result {
+      margin-top: 1rem;
+      padding: 1.1rem;
+      background: linear-gradient(135deg, var(--primary-very-soft) 0%, var(--card) 100%);
+      border-radius: var(--radius-sm);
+      color: var(--text-dark);
+      font-size: 0.98rem;
+      border-left: 4px solid var(--primary);
+      box-shadow: var(--shadow);
+    }
+    .result hr {
+      border: none;
+      border-top: 2px dashed var(--primary-soft);
+      margin: 1rem 0;
+    }
+
+    .copy-btn {
+      margin-left: 10px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25);
+    }
+    .copy-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);
+    }
+    .copy-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* Telefones: garantir label e número em bloco flexível */
+    .phones-section .phone-label { min-width: 110px; font-weight: 600; color: var(--text-muted) }
+
+    /* Seção de horários */
+    .schedule-section {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.2rem;
+      border: 1px solid var(--muted-border);
+      box-shadow: inset 0 0 0 1px var(--muted-border);
+    }
+
+    .schedule-day {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      font-family: var(--font-heading);
+    }
+
+    .schedule-item {
+      background: var(--card);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      border: 1px solid var(--muted-border);
+      transition: border-color 0.2s ease;
+    }
+    .schedule-item:hover {
+      border-color: var(--primary-soft);
+    }
+
+    .schedule-label {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+
+    /* Formulário de sugestão */
+    .suggestion-form {
+      background: linear-gradient(135deg, var(--primary-very-soft) 0%, rgba(245, 158, 11, 0.04) 100%);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      margin-top: 1.5rem;
+      border: 2px solid var(--primary-soft);
+    }
+
+    .btn-submit {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      color: #fff;
+      padding: 0.85rem 2.2rem;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.25);
+    }
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(5, 150, 105, 0.35);
+    }
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    /* Footer */
+    .footer-credit {
+      width: 100%;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 12px 0;
+      opacity: 0.8;
+      font-weight: 500;
+    }
+
+    /* Regras responsivas */
+    @media (max-width: 700px) {
+      .main-wrapper { max-width: 100vw; padding: 0 16px; margin: 16px auto }
+      .container { padding: 1.25rem; border-radius: 16px }
+      h1 { font-size: 1.15rem }
+      .subtitle { font-size: 0.9rem; margin-bottom: 1rem }
+      .logo-bg { width: 90px; height: 90px }
+      .logo { width: 75px; height: 75px }
+      .result { font-size: 0.95rem; padding: 0.9rem }
+      label, .section-label { font-size: clamp(0.85rem, 3.6vw, 0.95rem) }
+      .schedule-section { padding: 1rem }
+    }
+
+    @media (max-width: 400px) {
+      .main-wrapper { padding: 0 12px }
+      .container { padding: 1rem }
+      .logo-bg { width: 70px; height: 70px }
+      .logo { width: 58px; height: 58px }
     }
   </style>
   </head>
@@ -87,60 +323,61 @@
         <div class="logo-bg">
           <img src="Gemini_Generated_Image_j9oll4j9oll4j9ol.png" alt="Logo Sou Machado" class="logo">
         </div>
-    <footer style="width:100%;text-align:center;font-size:0.98rem;color:var(--muted);margin:8px 0;opacity:0.85;letter-spacing:0.01em;">by Fabiano Fuzetto</footer>
+    <p class="footer-credit">by Fabiano Fuzetto</p>
     <h1>Encontre o CEP do seu endereço em Álvares Machado</h1>
-    <label for="rua" class="section-label">Digite o nome da sua rua:</label>
-      <input type="text" id="rua" placeholder="Exemplo: Av. das Américas" oninput="buscarCEP()" style="font-style: italic; color:var(--accent); background:#fff; border:1.2px solid var(--input-border);">
+    <p class="subtitle">Sua cidade na palma da mão</p>
+    <label for="rua" class="section-label"><span>🔍</span> Digite o nome da sua rua:</label>
+      <input type="text" id="rua" placeholder="Exemplo: Av. das Américas" oninput="buscarCEP()">
         <div id="resultado" class="result" style="display:none;"></div>
-        <div class="phones-section" style="width:100%;margin-top:2.2rem;">
-          <label class="section-label" style="display:flex;align-items:center;gap:0.5em;"><span class="phone-icon">📞</span> Telefones Úteis</label>
+        <div class="phones-section" style="width:100%;margin-top:2rem;">
+          <h2><span>📞</span> Telefones Úteis</h2>
           <label for="telefone-search" class="section-label">Digite o nome do local ou serviço:</label>
-          <input type="text" id="telefone-search" placeholder="Exemplo: Prefeitura Municipal" oninput="buscarTelefone()" style="width:100%;padding:0.9rem;margin:0.5rem 0 1.5rem 0;border:1.5px solid var(--accent-soft);border-radius:10px;font-size:1.15rem;background:#fff;font-style:italic;color:var(--muted);box-sizing:border-box;">
+          <input type="text" id="telefone-search" placeholder="Exemplo: Prefeitura Municipal" oninput="buscarTelefone()">
           <div id="resultado-telefone" class="result" style="display:none;"></div>
         </div>
-  <form id="formSugestao" action="https://formspree.io/f/manbnnnd" method="POST" style="background:linear-gradient(180deg,#ffffff,#f8fbff);border-radius:12px;padding:1.2rem;display:flex;flex-direction:column;align-items:center;gap:1rem;width:100%;margin-top:2rem;border:2px solid var(--accent-very-soft);">
-  <section style="width:100%;margin-top:0.2em;background:var(--card);border-radius:16px;padding:1.5rem 1.2rem;border:none;box-shadow:inset 0 0 0 1px var(--muted-border);">
-  <h2 style="color:var(--accent);font-size:1.05rem;font-weight:700;margin-bottom:0.9rem;display:flex;align-items:center;gap:0.5em;">Hora do Busão - Passe R$ 6,60</h2>
+  <form id="formSugestao" action="https://formspree.io/f/manbnnnd" method="POST" class="suggestion-form">
+  <section class="schedule-section" style="width:100%;">
+  <h2><span>🚌</span> Hora do Busão <span style="background:var(--accent-soft);color:var(--accent);padding:0.2rem 0.6rem;border-radius:20px;font-size:0.8rem;margin-left:0.5rem;">R$ 6,60</span></h2>
     <div style="margin-bottom:1.2em;">
-      <div style="font-weight:600;color:var(--accent);font-size:1.08rem;margin-bottom:0.3em;">De Segunda-feira a Sexta-feira</div>
-      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;margin-bottom:0.5em;border:1px solid var(--muted-border);">
-        <span style="font-weight:600;color:var(--accent);">Saindo de Prudente:</span>
-        <span style="color:#0f1724;">06:05, 06:35, 06:40, 06:50, 07:20, 07:45, 08:00, 09:00, 10:00, 11:00, 12:00, 13:20, 13:40, 15:10, 15:50, 16:20, 16:45, 17:10, 17:30, 17:50, 18:05, 18:20, 19:30, 22:10</span>
+      <div class="schedule-day">Segunda a Sexta-feira</div>
+      <div class="schedule-item">
+        <span class="schedule-label">Saindo de Prudente:</span><br>
+        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">06:05, 06:35, 06:40, 06:50, 07:20, 07:45, 08:00, 09:00, 10:00, 11:00, 12:00, 13:20, 13:40, 15:10, 15:50, 16:20, 16:45, 17:10, 17:30, 17:50, 18:05, 18:20, 19:30, 22:10</span>
       </div>
-      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;border:1px solid var(--muted-border);">
-        <span style="font-weight:600;color:var(--accent);">Saindo do Pinheiro:</span>
-        <span style="color:#0f1724;">05:30, 05:50, 06:00, 06:15, 06:40, 07:05, 07:15, 07:30, 08:00, 08:20, 08:40, 09:40, 11:00, 13:00, 13:40, 14:20, 14:45, 15:20, 15:50, 16:40, 17:10, 17:35, 18:35, 21:30</span>
+      <div class="schedule-item">
+        <span class="schedule-label">Saindo do Pinheiro:</span><br>
+        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">05:30, 05:50, 06:00, 06:15, 06:40, 07:05, 07:15, 07:30, 08:00, 08:20, 08:40, 09:40, 11:00, 13:00, 13:40, 14:20, 14:45, 15:20, 15:50, 16:40, 17:10, 17:35, 18:35, 21:30</span>
       </div>
     </div>
     <div style="margin-bottom:1.2em;">
-      <div style="font-weight:600;color:var(--accent);font-size:1.08rem;margin-bottom:0.3em;">Aos Sábados</div>
-      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;margin-bottom:0.5em;border:1px solid var(--muted-border);">
-        <span style="font-weight:600;color:var(--accent);">Saindo de Prudente:</span>
-        <span style="color:#0f1724;">06:20, 07:00, 07:40, 08:20, 10:20, 11:00, 11:50, 12:20, 14:20, 15:40, 17:00, 18:10, 19:30, 22:10</span>
+      <div class="schedule-day">Sábados</div>
+      <div class="schedule-item">
+        <span class="schedule-label">Saindo de Prudente:</span><br>
+        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">06:20, 07:00, 07:40, 08:20, 10:20, 11:00, 11:50, 12:20, 14:20, 15:40, 17:00, 18:10, 19:30, 22:10</span>
       </div>
-      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;border:1px solid var(--muted-border);">
-        <span style="font-weight:600;color:var(--accent);">Saindo do Pinheiro:</span>
-        <span style="color:#0f1724;">05:40, 06:20, 07:00, 07:40, 08:20, 10:00, 11:00, 11:40, 13:00, 15:00, 16:20, 17:40, 18:40, 21:00</span>
+      <div class="schedule-item">
+        <span class="schedule-label">Saindo do Pinheiro:</span><br>
+        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">05:40, 06:20, 07:00, 07:40, 08:20, 10:00, 11:00, 11:40, 13:00, 15:00, 16:20, 17:40, 18:40, 21:00</span>
       </div>
     </div>
     <div>
-      <div style="font-weight:600;color:var(--accent);font-size:1.08rem;margin-bottom:0.3em;">Domingos e Feriados</div>
-      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;margin-bottom:0.5em;border:1px solid var(--muted-border);">
-        <span style="font-weight:600;color:var(--accent);">Saindo de Prudente:</span>
-        <span style="color:#0f1724;">07:30, 12:00, 18:00, 19:30</span>
+      <div class="schedule-day">Domingos e Feriados</div>
+      <div class="schedule-item">
+        <span class="schedule-label">Saindo de Prudente:</span><br>
+        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">07:30, 12:00, 18:00, 19:30</span>
       </div>
-      <div style="background:#fff;border-radius:8px;padding:0.7em 1em;border:1px solid var(--muted-border);">
-        <span style="font-weight:600;color:var(--accent);">Saindo do Pinheiro:</span>
-        <span style="color:#0f1724;">05:50, 08:30, 11:00, 17:20</span>
+      <div class="schedule-item">
+        <span class="schedule-label">Saindo do Pinheiro:</span><br>
+        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">05:50, 08:30, 11:00, 17:20</span>
       </div>
     </div>
   </section>
-          <label for="mensagem" class="section-label" style="display:flex;align-items:center;gap:0.5em;margin-top:2.2em;">Dúvidas ou sugestão</label>
-          <textarea id="mensagem" name="message" required rows="3" placeholder="Digite sua mensagem aqui..." style="width:100%;max-width:420px;padding:0.9rem;border:1.5px solid var(--accent-soft);border-radius:10px;font-size:1.08rem;background:#fff;resize:vertical;"></textarea>
+          <label for="mensagem" class="section-label" style="margin-top:1.5rem;"><span>💬</span> Dúvidas ou sugestão</label>
+          <textarea id="mensagem" name="message" required rows="3" placeholder="Digite sua mensagem aqui..." style="width:100%;max-width:100%;resize:vertical;"></textarea>
           <input type="hidden" name="_replyto" value="fabianofuzetto@gmail.com">
-          <button type="submit" style="background:var(--accent);color:#fff;padding:0.7em 2.2em;border:none;border-radius:8px;font-size:1.05rem;font-weight:600;cursor:pointer;transition:background 0.2s, transform 0.1s;">Enviar</button>
+          <button type="submit" class="btn-submit">Enviar mensagem</button>
         </form>
-        <div id="msgAgradecimento" style="display:none;text-align:center;color:var(--accent);font-size:1.03rem;font-weight:600;margin-top:1.2em;">Recebemos sua mensagem — obrigado!</div>
+        <div id="msgAgradecimento" style="display:none;text-align:center;color:var(--primary);font-size:1rem;font-weight:600;margin-top:1.2em;padding:1rem;background:var(--primary-soft);border-radius:var(--radius-sm);">✅ Recebemos sua mensagem — obrigado!</div>
     </div>
   <script>
     // Holiday decorations removed for a cleaner, modern theme
