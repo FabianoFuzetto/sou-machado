@@ -296,6 +296,35 @@
       font-weight: 500;
     }
 
+    /* Versículo do Dia */
+    .verse-container {
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      background: linear-gradient(135deg, var(--primary-very-soft) 0%, rgba(245, 158, 11, 0.05) 100%);
+      border-radius: var(--radius);
+      text-align: center;
+      border: 1px dashed var(--primary-soft);
+    }
+    .verse-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .verse-text {
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 0.4rem;
+    }
+    .verse-reference {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
     /* Regras responsivas */
     @media (max-width: 700px) {
       .main-wrapper { max-width: 100vw; padding: 0 16px; margin: 16px auto }
@@ -378,9 +407,63 @@
           <button type="submit" class="btn-submit">Enviar mensagem</button>
         </form>
         <div id="msgAgradecimento" style="display:none;text-align:center;color:var(--primary);font-size:1rem;font-weight:600;margin-top:1.2em;padding:1rem;background:var(--primary-soft);border-radius:var(--radius-sm);">✅ Recebemos sua mensagem — obrigado!</div>
+
+        <!-- Versículo do Dia -->
+        <div class="verse-container">
+          <div class="verse-icon">✨</div>
+          <p class="verse-text" id="verseText"></p>
+          <span class="verse-reference" id="verseRef"></span>
+        </div>
     </div>
   <script>
-    // Holiday decorations removed for a cleaner, modern theme
+    // Versículos do Dia - Muda diariamente
+    const versiculos = [
+      { texto: "O Senhor é o meu pastor; nada me faltará.", ref: "Salmos 23:1" },
+      { texto: "Tudo posso naquele que me fortalece.", ref: "Filipenses 4:13" },
+      { texto: "Confie no Senhor de todo o seu coração.", ref: "Provérbios 3:5" },
+      { texto: "O amor é paciente, o amor é bondoso.", ref: "1 Coríntios 13:4" },
+      { texto: "Não temas, porque eu sou contigo.", ref: "Isaías 41:10" },
+      { texto: "A fé é a certeza daquilo que esperamos.", ref: "Hebreus 11:1" },
+      { texto: "Deus é o nosso refúgio e fortaleza.", ref: "Salmos 46:1" },
+      { texto: "Alegrem-se sempre no Senhor.", ref: "Filipenses 4:4" },
+      { texto: "Lançando sobre ele toda a vossa ansiedade.", ref: "1 Pedro 5:7" },
+      { texto: "O Senhor é a minha luz e a minha salvação.", ref: "Salmos 27:1" },
+      { texto: "Porque Deus amou o mundo de tal maneira...", ref: "João 3:16" },
+      { texto: "Eu sou o caminho, a verdade e a vida.", ref: "João 14:6" },
+      { texto: "A paz vos deixo, a minha paz vos dou.", ref: "João 14:27" },
+      { texto: "Busquem primeiro o Reino de Deus.", ref: "Mateus 6:33" },
+      { texto: "Eu estarei convosco todos os dias.", ref: "Mateus 28:20" },
+      { texto: "Sejam fortes e corajosos.", ref: "Josué 1:9" },
+      { texto: "Grande é a fidelidade do Senhor.", ref: "Lamentações 3:23" },
+      { texto: "Entrega o teu caminho ao Senhor.", ref: "Salmos 37:5" },
+      { texto: "O Senhor é bom, um refúgio em tempos de angústia.", ref: "Naum 1:7" },
+      { texto: "Aquele que começou a boa obra a completará.", ref: "Filipenses 1:6" },
+      { texto: "Oração do justo pode mudar muitas coisas.", ref: "Tiago 5:16" },
+      { texto: "Bem-aventurados os pacíficos.", ref: "Mateus 5:9" },
+      { texto: "Sede transformados pela renovação do entendimento.", ref: "Romanos 12:2" },
+      { texto: "O fruto do Espírito é amor, alegria, paz.", ref: "Gálatas 5:22" },
+      { texto: "Esperança não decepciona.", ref: "Romanos 5:5" },
+      { texto: "Descansem em mim, todos os cansados.", ref: "Mateus 11:28" },
+      { texto: "Em tudo dai graças.", ref: "1 Tessalonicenses 5:18" },
+      { texto: "Porque onde está o teu tesouro, aí estará o teu coração.", ref: "Mateus 6:21" },
+      { texto: "Pedi e vos será dado.", ref: "Mateus 7:7" },
+      { texto: "O Senhor é fiel em todas as suas promessas.", ref: "Salmos 145:13" },
+      { texto: "Com Deus faremos proezas.", ref: "Salmos 60:12" }
+    ];
+
+    // Exibe o versículo baseado no dia do ano
+    function exibirVersiculoDoDia() {
+      const hoje = new Date();
+      const inicio = new Date(hoje.getFullYear(), 0, 0);
+      const diff = hoje - inicio;
+      const umDia = 1000 * 60 * 60 * 24;
+      const diaDoAno = Math.floor(diff / umDia);
+      const indice = diaDoAno % versiculos.length;
+      const versiculo = versiculos[indice];
+      document.getElementById('verseText').textContent = `“${versiculo.texto}”`;
+      document.getElementById('verseRef').textContent = versiculo.ref;
+    }
+    exibirVersiculoDoDia();
 
     const telefonesUteis = [
   {nome: 'CAPS Machado', numero: '(18) 3273-0040', tel: '01832730040'},
