@@ -133,15 +133,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 130px;
-      height: 130px;
-      box-shadow: 0 4px 16px rgba(5, 150, 105, 0.15);
+      width: 160px;
+      height: 160px;
+      box-shadow: 0 6px 24px rgba(5, 150, 105, 0.25);
       margin: 0.5rem 0 1rem;
-      border: 3px solid var(--primary-soft);
+      border: 4px solid var(--primary);
     }
     .logo {
-      width: 110px;
-      height: 110px;
+      width: 140px;
+      height: 140px;
       object-fit: cover;
       border-radius: 50%;
     }
@@ -331,8 +331,8 @@
       .container { padding: 1.25rem; border-radius: 16px }
       h1 { font-size: 1.15rem }
       .subtitle { font-size: 0.9rem; margin-bottom: 1rem }
-      .logo-bg { width: 90px; height: 90px }
-      .logo { width: 75px; height: 75px }
+      .logo-bg { width: 120px; height: 120px }
+      .logo { width: 100px; height: 100px }
       .result { font-size: 0.95rem; padding: 0.9rem }
       label, .section-label { font-size: clamp(0.85rem, 3.6vw, 0.95rem) }
       .schedule-section { padding: 1rem }
@@ -341,8 +341,8 @@
     @media (max-width: 400px) {
       .main-wrapper { padding: 0 12px }
       .container { padding: 1rem }
-      .logo-bg { width: 70px; height: 70px }
-      .logo { width: 58px; height: 58px }
+      .logo-bg { width: 100px; height: 100px }
+      .logo { width: 82px; height: 82px }
     }
   </style>
   </head>
@@ -367,26 +367,27 @@
   <form id="formSugestao" action="https://formspree.io/f/manbnnnd" method="POST" class="suggestion-form">
   <section class="schedule-section" style="width:100%;">
   <h2><span>🚌</span> Hora do Busão <span style="background:var(--accent-soft);color:var(--accent);padding:0.2rem 0.6rem;border-radius:20px;font-size:0.8rem;margin-left:0.5rem;">R$ 6,60</span></h2>
+    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem;"><a href="https://jandaiatransportes.com.br/horarios-do-parque-dos-pinheiros/" target="_blank" style="color:#2563eb;text-decoration:underline;">Conferir horários no site oficial</a></p>
     <div style="margin-bottom:1.2em;">
       <div class="schedule-day">Segunda a Sexta-feira</div>
       <div class="schedule-item">
         <span class="schedule-label">Saindo de Prudente:</span><br>
-        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">06:05, 06:35, 06:40, 06:50, 07:20, 07:45, 08:00, 09:00, 10:00, 11:00, 12:00, 13:20, 13:40, 15:10, 15:50, 16:20, 16:45, 17:10, 17:30, 17:50, 18:05, 18:20, 19:30, 22:10</span>
+        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">06:05, 06:35, 06:40, 06:50, 07:20, 07:45, 08:00, 09:00, 10:00, 11:00, 12:20, 13:40, 14:30, 15:10, 15:50, 16:20, 16:45, 17:10, 17:30, 17:50, 18:05, 18:20, 19:30, 22:10</span>
       </div>
       <div class="schedule-item">
         <span class="schedule-label">Saindo do Pinheiro:</span><br>
-        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">05:30, 05:50, 06:00, 06:15, 06:40, 07:05, 07:15, 07:30, 08:00, 08:20, 08:40, 09:40, 11:00, 13:00, 13:40, 14:20, 14:45, 15:20, 15:50, 16:40, 17:10, 17:35, 18:35, 21:30</span>
+        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">05:30, 05:50, 06:00, 06:15, 06:40, 07:05, 07:15, 07:30, 08:00, 08:20, 08:40, 09:40, 11:40, 13:00, 13:40, 14:20, 14:50, 15:20, 15:50, 16:40, 17:10, 17:35, 18:35, 21:30</span>
       </div>
     </div>
     <div style="margin-bottom:1.2em;">
       <div class="schedule-day">Sábados</div>
       <div class="schedule-item">
         <span class="schedule-label">Saindo de Prudente:</span><br>
-        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">06:20, 07:00, 07:40, 08:20, 10:20, 11:00, 11:50, 12:20, 14:20, 15:40, 17:00, 18:10, 19:30, 22:10</span>
+        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">06:20, 07:00, 07:40, 08:20, 10:20, 11:00, 11:50, 12:20, 14:20, 15:40, 17:00, 18:00, 19:30, 22:10</span>
       </div>
       <div class="schedule-item">
         <span class="schedule-label">Saindo do Pinheiro:</span><br>
-        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">05:40, 06:20, 07:00, 07:40, 08:20, 10:00, 11:00, 11:40, 13:00, 15:00, 16:20, 17:40, 18:40, 21:00</span>
+        <span style="color:var(--text-dark);font-size:0.9rem;line-height:1.6;">05:40, 06:20, 07:00, 07:40, 08:20, 09:00, 11:00, 11:40, 13:10, 15:00, 16:20, 17:20, 18:40, 21:00</span>
       </div>
     </div>
     <div>
