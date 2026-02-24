@@ -274,6 +274,68 @@
       transform: scale(1.05);
     }
 
+    /* Favoritos */
+    .favoritos-section {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      margin-top: 1rem;
+      border: 1px solid #f59e0b;
+    }
+    .favoritos-title {
+      font-weight: 600;
+      color: #b45309;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .favorito-item {
+      background: #fff;
+      border-radius: 8px;
+      padding: 0.6rem 0.8rem;
+      margin-bottom: 0.4rem;
+      border: 1px solid #fcd34d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .favorito-info {
+      flex: 1;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+    }
+    .favorito-cep {
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .btn-fav {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 4px;
+      transition: transform 0.2s;
+    }
+    .btn-fav:hover {
+      transform: scale(1.2);
+    }
+    .btn-remove-fav {
+      background: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fca5a5;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+    .btn-remove-fav:hover {
+      background: #fecaca;
+    }
+
     /* Formulário de sugestão */
     .suggestion-form {
       background: linear-gradient(135deg, var(--primary-very-soft) 0%, rgba(245, 158, 11, 0.04) 100%);
@@ -382,6 +444,7 @@
     <label for="rua" class="section-label"><span>🔍</span> Digite o nome da sua rua:</label>
       <input type="text" id="rua" placeholder="Exemplo: Av. das Américas" oninput="buscarCEP()">
         <div id="resultado" class="result" style="display:none;"></div>
+        <div id="favoritos-container"></div>
         <div class="phones-section" style="width:100%;margin-top:2rem;">
           <h2><span>📞</span> Telefones Úteis</h2>
           <label for="telefone-search" class="section-label">Digite o nome do local ou serviço:</label>
@@ -1115,22 +1178,106 @@
       resultado.style.display = 'block';
       const encontrados = panoramaRuas.filter(r => normalizar(r.logradouro).includes(rua));
       if (encontrados.length > 0) {
-        let ceps = encontrados.map((e, idx) => `
-          <strong>CEP:</strong> <span id='cep${idx}'>${e.cep}</span>
-          <button class='copy-btn' onclick="copiarCEP('${e.cep}')">Copiar</button><br>
-          <strong>Endereço:</strong> ${e.logradouro}, ${e.bairro}<br>
-          <strong>Cidade/UF:</strong> ${e.localidade}
-        `).join('<hr>');
+        let ceps = encontrados.map((e, idx) => {
+          const isFav = isFavorito(e.cep);
+          return `
+          <div style="display:flex;align-items:flex-start;gap:0.5rem;">
+            <div style="flex:1;">
+              <strong>CEP:</strong> <span id='cep${idx}'>${e.cep}</span>
+              <button class='copy-btn' onclick="copiarCEP('${e.cep}', this)">Copiar</button>
+              <button class='btn-fav' onclick="toggleFavorito('${e.cep}', '${e.logradouro.replace(/'/g, "\\'")}', '${e.bairro.replace(/'/g, "\\'")}', this)" title="${isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">${isFav ? '⭐' : '☆'}</button><br>
+              <strong>Endereço:</strong> ${e.logradouro}, ${e.bairro}<br>
+              <strong>Cidade/UF:</strong> ${e.localidade}
+            </div>
+          </div>
+        `}).join('<hr>');
         resultado.innerHTML = ceps;
-    window.copiarCEP = function(cep) {
+    window.copiarCEP = function(cep, btn) {
       // Remove qualquer caractere não numérico
       const numeroCep = cep.replace(/\D/g, '');
-      navigator.clipboard.writeText(numeroCep);
+      navigator.clipboard.writeText(numeroCep).then(function() {
+        const textoOriginal = btn.textContent;
+        btn.textContent = '✓ Copiado!';
+        btn.style.background = 'var(--primary)';
+        btn.style.color = '#fff';
+        setTimeout(function() {
+          btn.textContent = textoOriginal;
+          btn.style.background = '';
+          btn.style.color = '';
+        }, 2000);
+      });
     }
       } else {
         resultado.innerHTML = 'Nenhum CEP encontrado para esta rua no Jardim Panorama.';
       }
     }
+
+    // Funções de Favoritos
+    function getFavoritos() {
+      return JSON.parse(localStorage.getItem('cepsFavoritos') || '[]');
+    }
+
+    function saveFavoritos(favs) {
+      localStorage.setItem('cepsFavoritos', JSON.stringify(favs));
+      renderFavoritos();
+    }
+
+    function isFavorito(cep) {
+      return getFavoritos().some(f => f.cep === cep);
+    }
+
+    window.toggleFavorito = function(cep, logradouro, bairro, btn) {
+      let favs = getFavoritos();
+      const idx = favs.findIndex(f => f.cep === cep);
+      if (idx > -1) {
+        favs.splice(idx, 1);
+        btn.textContent = '☆';
+        btn.title = 'Adicionar aos favoritos';
+      } else {
+        favs.push({ cep, logradouro, bairro });
+        btn.textContent = '⭐';
+        btn.title = 'Remover dos favoritos';
+      }
+      saveFavoritos(favs);
+    }
+
+    window.removerFavorito = function(cep) {
+      let favs = getFavoritos();
+      const idx = favs.findIndex(f => f.cep === cep);
+      if (idx > -1) {
+        favs.splice(idx, 1);
+        saveFavoritos(favs);
+        buscarCEP(); // Atualiza os botões na busca
+      }
+    }
+
+    function renderFavoritos() {
+      const container = document.getElementById('favoritos-container');
+      const favs = getFavoritos();
+      if (favs.length === 0) {
+        container.innerHTML = '';
+        return;
+      }
+      let html = `<div class="favoritos-section">
+        <div class="favoritos-title">⭐ Meus CEPs Favoritos</div>`;
+      favs.forEach(f => {
+        html += `<div class="favorito-item">
+          <div class="favorito-info">
+            <span class="favorito-cep">${f.cep}</span> - ${f.logradouro}, ${f.bairro}
+          </div>
+          <div>
+            <button class='copy-btn' onclick="copiarCEP('${f.cep}', this)">Copiar</button>
+            <button class='btn-remove-fav' onclick="removerFavorito('${f.cep}')">Remover</button>
+          </div>
+        </div>`;
+      });
+      html += '</div>';
+      container.innerHTML = html;
+    }
+
+    // Renderiza favoritos ao carregar a página
+    document.addEventListener('DOMContentLoaded', renderFavoritos);
+
     // Feedback após envio do formulário de sugestão
     document.addEventListener('DOMContentLoaded', function() {
       var form = document.getElementById('formSugestao');
