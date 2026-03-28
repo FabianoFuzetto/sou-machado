@@ -562,6 +562,64 @@
       background: rgba(255,255,255,0.15);
       border-radius: 8px;
     }
+
+    /* Seção de Notícias */
+    .news-section {
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid var(--muted-border);
+    }
+    .news-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .news-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .news-item {
+      padding: 0.8rem;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--accent);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .news-item:hover {
+      transform: translateX(4px);
+      box-shadow: var(--shadow);
+    }
+    .news-item a {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.4;
+      display: block;
+    }
+    .news-item a:hover {
+      color: var(--primary);
+    }
+    .news-source {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+    .news-loading, .news-error {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
   </style>
   </head>
   <body>
@@ -728,6 +786,15 @@
           <p class="verse-text" id="verseText"></p>
           <span class="verse-reference" id="verseRef"></span>
         </div>
+
+        <!-- Seção de Notícias -->
+        <div class="news-section" id="news-section">
+          <h3 class="news-title">📰 Notícias da Região</h3>
+          <div class="news-list" id="news-list">
+            <div class="news-loading">🔄 Carregando notícias...</div>
+          </div>
+        </div>
+      </div>
     </div>
   <script>
     // Versículos do Dia - Muda diariamente
@@ -1539,6 +1606,64 @@
 
     // Atualiza clima a cada 10 minutos
     setInterval(buscarClima, 10 * 60 * 1000);
+
+    // ============================================
+    // NOTÍCIAS - Google News RSS
+    // ============================================
+    async function buscarNoticias() {
+      const container = document.getElementById('news-list');
+      try {
+        // Busca notícias sobre "Álvares Machado" ou "Presidente Prudente" (região)
+        const query = encodeURIComponent('"Álvares Machado" OR "Presidente Prudente"');
+        const rssUrl = `https://news.google.com/rss/search?q=${query}&hl=pt-BR&gl=BR&ceid=BR:pt-419`;
+        
+        // Usa rss2json para converter RSS para JSON (evita CORS)
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+        
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error('Erro na requisição');
+        const data = await response.json();
+
+        if (data.status === 'ok' && data.items && data.items.length > 0) {
+          // Pega as 5 primeiras notícias
+          const noticias = data.items.slice(0, 5);
+          
+          let html = noticias.map(noticia => {
+            // Extrai o nome da fonte do título (vem no formato "Título - Fonte")
+            const partes = noticia.title.split(' - ');
+            const fonte = partes.length > 1 ? partes.pop() : '';
+            const titulo = partes.join(' - ');
+            
+            return `
+              <div class="news-item">
+                <a href="${noticia.link}" target="_blank" rel="noopener noreferrer">
+                  ${titulo}
+                </a>
+                ${fonte ? `<div class="news-source">📝 ${fonte}</div>` : ''}
+              </div>
+            `;
+          }).join('');
+
+          container.innerHTML = html;
+        } else {
+          container.innerHTML = '<div class="news-error">Nenhuma notícia encontrada no momento.</div>';
+        }
+      } catch (error) {
+        console.error('Erro ao buscar notícias:', error);
+        container.innerHTML = `
+          <div class="news-error">
+            ⚠️ Não foi possível carregar as notícias.<br>
+            <a href="https://news.google.com/search?q=%C3%81lvares%20Machado&hl=pt-BR&gl=BR" target="_blank" style="color:var(--primary);">Ver no Google News</a>
+          </div>
+        `;
+      }
+    }
+
+    // Busca notícias ao carregar a página
+    document.addEventListener('DOMContentLoaded', buscarNoticias);
+
+    // Atualiza notícias a cada 30 minutos
+    setInterval(buscarNoticias, 30 * 60 * 1000);
 
     // Feedback após envio do formulário de sugestão
     document.addEventListener('DOMContentLoaded', function() {
