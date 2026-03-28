@@ -740,14 +740,37 @@
         resultado.innerHTML = 'Nenhum telefone encontrado.';
       }
     }
+
+    // ============================================
+    // BUSCA DE CEP VIA API VIACEP (Correios)
+    // ============================================
+    let debounceTimer = null;
+    let ultimaBusca = '';
+
+    async function buscarCEPOnline(rua) {
+      // API ViaCEP para buscar endereços por nome de rua em Álvares Machado/SP
+      const url = `https://viacep.com.br/ws/SP/Alvares%20Machado/${encodeURIComponent(rua)}/json/`;
+      try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Erro na requisição');
+        const data = await response.json();
+        // A API retorna array vazio se não encontrar, ou array com resultados
+        if (Array.isArray(data) && data.length > 0) {
+          return data.map(item => ({
+            logradouro: item.logradouro,
+            bairro: item.bairro,
+            localidade: `${item.localidade}/${item.uf}`,
+            cep: item.cep
+          }));
+        }
+        return [];
+      } catch (error) {
+        console.error('Erro ao buscar CEP:', error);
+        return null; // null indica erro de rede
+      }
+    }
+
     const panoramaRuas = [
-  {logradouro: 'Área Rural', bairro: 'Área Rural de Álvares Machado', localidade: 'Álvares Machado/SP', cep: '19168-899'},
-  {logradouro: 'Área Rural', bairro: 'Área Rural de Coronel Goulart', localidade: 'Álvares Machado/SP', cep: '19169-899'},
-  {logradouro: 'Avenida Arthur Boigues Filho (Avenida da Amizade)', bairro: 'Bairro do Limoeiro', localidade: 'Álvares Machado/SP', cep: '19165-140'},
-  {logradouro: 'Avenida das Américas', bairro: 'Central Park Álvares Machado', localidade: 'Álvares Machado/SP', cep: '19167-132'},
-  {logradouro: 'Rua Dom Pedro I', bairro: 'Central Park Álvares Machado', localidade: 'Álvares Machado/SP', cep: '19167-130'},
-  {logradouro: 'Rua Expedicionários', bairro: 'Central Park Álvares Machado', localidade: 'Álvares Machado/SP', cep: '19167-134'},
-  {logradouro: 'Rua Sete de Setembro', bairro: 'Central Park Álvares Machado', localidade: 'Álvares Machado/SP', cep: '19167-136'},
   {logradouro: 'Rua XV de Novembro', bairro: 'Central Park Álvares Machado', localidade: 'Álvares Machado/SP', cep: '19167-138'},
   {logradouro: 'Rua Pedro Mazzaro, 264', bairro: 'Centro', localidade: 'Álvares Machado/SP', cep: '19160-970'},
   {logradouro: 'Rua Pedro Mazzaro, 264 Clique e Retire Correios', bairro: 'Centro', localidade: 'Álvares Machado/SP', cep: '19160-959'},
@@ -1218,30 +1241,79 @@
     }
 
     function buscarCEP() {
-      const rua = normalizar(document.getElementById('rua').value.trim());
+      const rua = document.getElementById('rua').value.trim();
       const resultado = document.getElementById('resultado');
-      resultado.innerHTML = '';
-      if (!rua) {
+      
+      if (!rua || rua.length < 3) {
         resultado.style.display = 'none';
+        resultado.innerHTML = '';
         return;
       }
-      resultado.style.display = 'block';
-      const encontrados = panoramaRuas.filter(r => normalizar(r.logradouro).includes(rua));
-      if (encontrados.length > 0) {
-        let ceps = encontrados.map((e, idx) => {
-          const isFav = isFavorito(e.cep);
-          return `
-          <div style="display:flex;align-items:flex-start;gap:0.5rem;">
-            <div style="flex:1;">
-              <strong>CEP:</strong> <span id='cep${idx}'>${e.cep}</span>
-              <button class='copy-btn' onclick="copiarCEP('${e.cep}', this)">Copiar</button>
-              <button class='btn-fav' onclick="toggleFavorito('${e.cep}', '${e.logradouro.replace(/'/g, "\\'")}', '${e.bairro.replace(/'/g, "\\'")}', this)" title="${isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">${isFav ? '⭐' : '☆'}</button><br>
-              <strong>Endereço:</strong> ${e.logradouro}, ${e.bairro}<br>
-              <strong>Cidade/UF:</strong> ${e.localidade}
+
+      // Debounce: aguarda 400ms após parar de digitar
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(async () => {
+        // Evita buscar o mesmo termo repetidamente
+        if (normalizar(rua) === ultimaBusca) return;
+        ultimaBusca = normalizar(rua);
+
+        resultado.style.display = 'block';
+        resultado.innerHTML = '<div style="text-align:center;padding:1rem;"><span style="color:var(--primary);">🔄 Buscando na API dos Correios...</span></div>';
+
+        // Busca primeiro na API ViaCEP (online)
+        const resultadosAPI = await buscarCEPOnline(rua);
+
+        // Também busca no array local como fallback
+        const ruaNorm = normalizar(rua);
+        const encontradosLocal = panoramaRuas.filter(r => normalizar(r.logradouro).includes(ruaNorm));
+
+        // Combina resultados: API primeiro, depois locais que não estejam duplicados
+        let encontrados = [];
+        if (resultadosAPI && resultadosAPI.length > 0) {
+          encontrados = [...resultadosAPI];
+        }
+        
+        // Adiciona resultados locais que não estão na API
+        encontradosLocal.forEach(local => {
+          const jaExiste = encontrados.some(e => e.cep.replace('-', '') === local.cep.replace('-', ''));
+          if (!jaExiste) {
+            encontrados.push(local);
+          }
+        });
+
+        if (resultadosAPI === null) {
+          // Erro de rede, usar apenas dados locais
+          encontrados = encontradosLocal;
+          if (encontrados.length > 0) {
+            resultado.innerHTML = '<div style="padding:0.5rem;margin-bottom:1rem;background:var(--accent-soft);border-radius:8px;font-size:0.9rem;">⚠️ Sem conexão com a internet. Usando dados locais.</div>';
+          }
+        }
+
+        if (encontrados.length > 0) {
+          let ceps = encontrados.map((e, idx) => {
+            const isFav = isFavorito(e.cep);
+            return `
+            <div style="display:flex;align-items:flex-start;gap:0.5rem;">
+              <div style="flex:1;">
+                <strong>CEP:</strong> <span id='cep${idx}'>${e.cep}</span>
+                <button class='copy-btn' onclick="copiarCEP('${e.cep}', this)">Copiar</button>
+                <button class='btn-fav' onclick="toggleFavorito('${e.cep}', '${e.logradouro.replace(/'/g, "\\'")}', '${e.bairro.replace(/'/g, "\\'")}', this)" title="${isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}">${isFav ? '⭐' : '☆'}</button><br>
+                <strong>Endereço:</strong> ${e.logradouro}, ${e.bairro}<br>
+                <strong>Cidade/UF:</strong> ${e.localidade}
+              </div>
             </div>
-          </div>
-        `}).join('<hr>');
-        resultado.innerHTML = ceps;
+          `}).join('<hr>');
+          
+          const fonte = resultadosAPI && resultadosAPI.length > 0 
+            ? '<div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.8rem;">✓ Fonte: API ViaCEP (Correios)</div>' 
+            : '';
+          resultado.innerHTML = fonte + ceps;
+        } else {
+          resultado.innerHTML = 'Nenhum CEP encontrado para esta rua em Álvares Machado.';
+        }
+      }, 400);
+    }
+
     window.copiarCEP = function(cep, btn) {
       // Remove qualquer caractere não numérico
       const numeroCep = cep.replace(/\D/g, '');
@@ -1256,10 +1328,6 @@
           btn.style.color = '';
         }, 2000);
       });
-    }
-      } else {
-        resultado.innerHTML = 'Nenhum CEP encontrado para esta rua no Jardim Panorama.';
-      }
     }
 
     // Funções de Favoritos
