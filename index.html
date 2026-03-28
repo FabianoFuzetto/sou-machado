@@ -482,6 +482,86 @@
       .container { padding: 1rem }
       .brand-title { font-size: 1.8rem }
     }
+
+    /* Seção de Clima */
+    .weather-section {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.5rem;
+      color: #fff;
+      box-shadow: var(--shadow-lg);
+    }
+    .weather-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.8rem;
+    }
+    .weather-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .weather-location {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+    .weather-main {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .weather-temp {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .weather-icon {
+      width: 64px;
+      height: 64px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+    .weather-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.8rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    .weather-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+    }
+    .weather-detail span:first-child {
+      opacity: 0.8;
+    }
+    .weather-description {
+      text-transform: capitalize;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+    }
+    .weather-loading {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+    .weather-error {
+      text-align: center;
+      padding: 0.8rem;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.15);
+      border-radius: 8px;
+    }
   </style>
   </head>
   <body>
@@ -491,6 +571,12 @@
     <p class="footer-credit">by Fabiano Fuzetto</p>
     <h2 class="page-subtitle">Encontre o CEP do seu endereço em Álvares Machado</h2>
     <p class="subtitle-wrapper"><span class="subtitle">Sua cidade na palma da mão</span></p>
+
+    <!-- Seção de Clima -->
+    <div class="weather-section" id="weather-section">
+      <div class="weather-loading">🌤️ Carregando clima...</div>
+    </div>
+
     <label for="rua" class="section-label"><span>🔍</span> Digite o nome da sua rua:</label>
       <input type="text" id="rua" placeholder="Exemplo: Av. das Américas" oninput="buscarCEP()">
         <div id="resultado" class="result" style="display:none;"></div>
@@ -1395,6 +1481,64 @@
 
     // Renderiza favoritos ao carregar a página
     document.addEventListener('DOMContentLoaded', renderFavoritos);
+
+    // ============================================
+    // CLIMA - OpenWeatherMap API
+    // ============================================
+    const OPENWEATHER_API_KEY = '25dd67a0456be9b718fbfae64cbaf526';
+    const CIDADE_LAT = -22.0733; // Latitude de Álvares Machado
+    const CIDADE_LON = -51.4728; // Longitude de Álvares Machado
+
+    async function buscarClima() {
+      const container = document.getElementById('weather-section');
+      try {
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${CIDADE_LAT}&lon=${CIDADE_LON}&appid=${OPENWEATHER_API_KEY}&units=metric&lang=pt_br`;
+        const response = await fetch(url);
+        if (!response.ok) throw new Error('Erro na API');
+        const data = await response.json();
+
+        const temp = Math.round(data.main.temp);
+        const sensacao = Math.round(data.main.feels_like);
+        const umidade = data.main.humidity;
+        const vento = Math.round(data.wind.speed * 3.6); // m/s para km/h
+        const descricao = data.weather[0].description;
+        const icone = data.weather[0].icon;
+        const iconUrl = `https://openweathermap.org/img/wn/${icone}@2x.png`;
+
+        container.innerHTML = `
+          <div class="weather-header">
+            <div class="weather-title">🌤️ Clima Agora</div>
+            <div class="weather-location">📍 Álvares Machado</div>
+          </div>
+          <div class="weather-main">
+            <img src="${iconUrl}" alt="${descricao}" class="weather-icon">
+            <div>
+              <div class="weather-temp">${temp}°C</div>
+              <div class="weather-description">${descricao}</div>
+            </div>
+          </div>
+          <div class="weather-details">
+            <div class="weather-detail"><span>🌡️</span> Sensação: ${sensacao}°C</div>
+            <div class="weather-detail"><span>💧</span> Umidade: ${umidade}%</div>
+            <div class="weather-detail"><span>💨</span> Vento: ${vento} km/h</div>
+          </div>
+        `;
+      } catch (error) {
+        console.error('Erro ao buscar clima:', error);
+        container.innerHTML = `
+          <div class="weather-error">
+            ⚠️ Não foi possível carregar o clima. <br>
+            <small>Verifique sua conexão com a internet.</small>
+          </div>
+        `;
+      }
+    }
+
+    // Busca clima ao carregar a página
+    document.addEventListener('DOMContentLoaded', buscarClima);
+
+    // Atualiza clima a cada 10 minutos
+    setInterval(buscarClima, 10 * 60 * 1000);
 
     // Feedback após envio do formulário de sugestão
     document.addEventListener('DOMContentLoaded', function() {
